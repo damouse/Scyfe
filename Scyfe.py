@@ -13,8 +13,6 @@ pretending to be an application implementation.)
 '''
 
 from tests import *
-from client import *
-from server import *
 from utils import Utils
 
 fname = 'Main'
@@ -28,10 +26,13 @@ def runAsServer(serverIp):
     pass
 
 def runStubbedClient(serverIp, label):
-    pass
+    client = ClientMock.ClientMock(label)
+    client.connect(serverIp)
 
-def runStubbedServer(serverIp, label):
-    pass
+def runStubbedServer(serverIp):
+    server = ServerMock.ServerMock()
+
+    server.start()
 
 
 #development tests
@@ -44,9 +45,10 @@ def runLocalTests():
 
 
 if __name__ == "__main__":
-    runLocalTests()
+    # runLocalTests()
 
     #runAsClient()
     #runAsServer()
-    #runStubbedClient()
-    #runStubbedServer()
+
+    runStubbedServer('127.0.0.1')
+    runStubbedClient('127.0.0.1', "Client 1")

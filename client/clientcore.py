@@ -27,10 +27,10 @@ class Client:
         self.dispatch = Dispatch.Dispatch(self)
 
     #Connect to the server synchonously. Receive group assignments and default variables and values
-    def connectToServer(self, ipAddress):
+    def connect(self, ipAddress):
         pass
 
-    def disconnectFromServer(self):
+    def disconnect(self):
         pass
 
 
@@ -47,7 +47,7 @@ class Client:
     #We have successfully connected to the server
     def connectedToServer(self):
         Utils.dlog(self.id, "Connected to server")
-        
+
         #inform the application
 
     #We were removed from the server (could be intentional or a kick)

@@ -1,0 +1,10 @@
+Scyfe is an overlay, peer-to-peer network with multicast elements that replaces the trusted-server
+in traditional client-server architecture with a plurality voting scheme. 
+
+Each folder in this directory contains a different module. Each module should be mostly
+self-dependant, but this may not be true (and is certainly not true in the case of the Client and Server
+objects.) See the same-named code file in each directory to see details about the module. 
+
+To run the module, execute Client, Server, or Tests.
+
+Best to start out at Client. 

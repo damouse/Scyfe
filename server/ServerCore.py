@@ -5,18 +5,13 @@ Entry point for server-side module.
 import sys
 from utils import *
 
-fname = 'Main'
+fname = 'Server'
 
-class Client:
+class Server:
     def __init__(self, label):
         self.label = label
 
-    #Make this client sound off indicating it is alive. 
-    #TODO: log the clients IP address and any other relevant information (#packets, etc)
+    #Make this server sound off indicating it is alive. 
+    #TODO: log the server IP address and any other relevant information (#packets, etc)
     def soundOff(self):
-        Utils.log(fname, 'Client named: ' + self.label)
-
-
-if __name__ == "__main__":
-    client = Client('Test')
-    client.soundOff()
+        Utils.log(fname, 'Server named: ' + self.label)

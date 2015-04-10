@@ -50,8 +50,3 @@ if __name__ == "__main__":
     #runAsServer()
     #runStubbedClient()
     #runStubbedServer()
-
-    #Chlorine- threading, pool and task management
-    #Relay- sockets, streams, buffering
-    #Dispatch- routing and addressing
-    #Slander- threat detection and gossip network implementation

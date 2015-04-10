@@ -14,5 +14,8 @@ def stable():
     client = ClientCore.Client("TestClient")
     client.soundOff()
 
+    server = ServerCore.Server("TestServer")
+    server.soundOff()
+
 def runTests():
     stable()

@@ -1,7 +1,7 @@
 '''
-A wrapper meant to mimic the server application relying on this library to function. 
+A wrapper meant to mimic the client application relying on this library to function. 
 
-This wrapper interfaces with the ServerCore object and pretends to be a normal server.
+This wrapper interfaces with the ClientCore object and pretends to be a normal server.
 '''
 
 from utils import *

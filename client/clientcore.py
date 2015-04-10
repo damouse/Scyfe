@@ -12,9 +12,6 @@ class Client:
     print 'Client named: ' + self.label
 
 
-'''
-This class runs standalone
-'''
 if __name__ == "__main__":
   client = Client('Test')
   client.soundOff()

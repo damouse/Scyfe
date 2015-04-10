@@ -7,11 +7,19 @@ performance of the system as appropriate.
 
 '''
 
-import Stable
+import clientcore
+from tests import *
+
+# from tests import stable as Stable
+from utils import utils
+
+fname = "Tests"
+
 
 if __name__ == "__main__":
-  print 'Test Suite-- starting all tests'
+    utils.log(fname, 'Starting all tests')
 
-  Stable.run()
+    stable.runTests()
+    # Stable.runTests()
 
-  print 'Test Suite-- ending all tests'
+    utils.log(fname, 'All Tests Completed')

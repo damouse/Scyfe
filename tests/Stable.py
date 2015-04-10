@@ -11,10 +11,10 @@ from server import *
 
 def stable():
     Utils.log('Test.Stable', 'testing instantiation of all objects')
-    client = ClientCore.Client("TestClient")
+    client = ClientCore.Client("TestClient", None)
     client.soundOff()
 
-    server = ServerCore.Server("TestServer")
+    server = ServerCore.Server("TestServer", None)
     server.soundOff()
 
 def runTests():

@@ -2,7 +2,7 @@
 Utility methods.
 '''
 
-DEBUG_LOG = true
+DEBUG_LOG = True
 
 #platform independant logging function-- can be used to route logs to 
 #a central location if need be

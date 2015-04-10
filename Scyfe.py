@@ -15,7 +15,7 @@ pretending to be an application implementation.)
 from tests import *
 from client import *
 from server import *
-from utils import *
+from utils import Utils
 
 fname = 'Main'
 

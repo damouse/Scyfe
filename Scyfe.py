@@ -1,3 +1,4 @@
+
 '''
 Entry point for Scyfe functionality. 
 
@@ -14,6 +15,9 @@ pretending to be an application implementation.)
 from tests import *
 from client import *
 from server import *
+from utils import *
+
+fname = 'Main'
 
 
 #major functionality
@@ -30,9 +34,14 @@ def runStubbedServer(serverIp, label):
     pass
 
 
-#def local testing
+#development tests
 def runLocalTests():
-    pass
+    Utils.log(fname, 'Starting all tests')
+
+    Stable.runTests()
+
+    Utils.log(fname, 'All Tests Completed')
+
 
 if __name__ == "__main__":
     runLocalTests()

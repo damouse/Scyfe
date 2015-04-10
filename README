@@ -5,6 +5,10 @@ Each folder in this directory contains a different module. Each module should be
 self-dependant, but this may not be true (and is certainly not true in the case of the Client and Server
 objects.) See the same-named code file in each directory to see details about the module. 
 
-To run the module, execute Client, Server, or Tests.
+All functionality is executed from the Scyfe.py top level script. It should take a runtype and an IP
+address (most likely for the server) and run from there. 
 
-Best to start out at Client. 
+All imports are relative to the project root (this directory.)
+
+Do not use print(). Use Utils.log(). The first argument is the name of the class logging, the second
+is the contents of the log message. It will make things a lot easier later. 

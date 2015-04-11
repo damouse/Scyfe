@@ -11,6 +11,7 @@ The first two run this instance as given, while the third either runs local test
 verifying project functionality or wraps a client/server instance as a mock (most likely
 pretending to be an application implementation.)
 '''
+import sys
 
 from tests import *
 from utils import Utils
@@ -27,12 +28,12 @@ def runAsServer(serverIp):
 
 def runStubbedClient(serverIp, label):
     client = ClientMock.ClientMock(label)
-    client.connect(serverIp)
+    client.connect(serverIp,40000)
 
 def runStubbedServer(serverIp):
     server = ServerMock.ServerMock()
 
-    server.start()
+    server.start("127.0.0.1")
 
 
 #development tests
@@ -50,5 +51,9 @@ if __name__ == "__main__":
     #runAsClient()
     #runAsServer()
 
-    runStubbedServer('127.0.0.1')
-    runStubbedClient('127.0.0.1', "Client 1")
+    serverOrClient=sys.argv[1]
+    if(serverOrClient=='c'):
+        print("made it here")
+        runStubbedClient('127.0.0.1', 40000)
+    else:
+        runStubbedServer('127.0.0.1')

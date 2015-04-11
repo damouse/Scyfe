@@ -3,6 +3,8 @@ Entry point for client-side module.
 '''
 
 import sys
+import socket
+
 from utils import *
 from administration import *
 from chlorine import *
@@ -27,8 +29,13 @@ class Client:
         self.dispatch = Dispatch.Dispatch(self)
 
     #Connect to the server synchonously. Receive group assignments and default variables and values
-    def connect(self, ipAddress):
-        pass
+    def connect(self,serverIp,serverPort):
+        # Create a TCP/IP socket
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server_address = (serverIp, serverPort)
+        sock.connect(server_address)
+        sock.sendall("This is the message")
+        sock.close()
 
     def disconnect(self):
         pass

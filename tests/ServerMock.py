@@ -13,10 +13,10 @@ class ServerMock:
         self.name = "ServerMock"
         self.server = ServerCore.Server("Server", self)
 
-    def start(self):
+    def start(self,ipAddress):
         Utils.dlog(self.name, "Starting server")
         
-        self.server.start()
+        self.server.start(ipAddress)
 
     # How this object is represented when logged
     def __repr__(self):

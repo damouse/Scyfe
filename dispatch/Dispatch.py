@@ -19,3 +19,8 @@ class Dispatch:
     # returns- clientId to the next client in the route 
     def nextHop(self, client):
         pass
+
+    # How this object is represented when logged
+    def __repr__(self):
+        ret =  'This is an unimplemented description.'
+        return ret

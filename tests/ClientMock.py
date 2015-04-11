@@ -17,3 +17,8 @@ class ClientMock:
         Utils.dlog(self.name, "Client connecting")
         
         self.client.connect(ipAddress)
+
+    # How this object is represented when logged
+    def __repr__(self):
+        ret =  'This is an unimplemented description.'
+        return ret

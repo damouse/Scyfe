@@ -57,8 +57,18 @@ class Client:
         #inform the application
 
 
+    ''' Packet Receiving and Processing '''
+    # We have received a new packet. Figure out what to do with it.
+    def handleMessage(self, message):
+        pass
+
     ''' Utilities and Bookeeping '''
     #Make this client sound off indicating it is alive. 
     #TODO: log the clients IP address and any other relevant information (#packets, etc)
     def soundOff(self):
         Utils.log(self.id, 'Hello. I am a client.')
+
+    # How this object is represented when logged
+    def __repr__(self):
+        ret =  'This is an unimplemented description.'
+        return ret

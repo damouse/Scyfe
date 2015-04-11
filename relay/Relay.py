@@ -31,4 +31,9 @@ class Relay:
 
     # Bind to a socket and start listening. Calls up to parent on receipt
     def listen(self):
-        pass
+        self.parent.handleMessage("This is a fake message")
+
+    # How this object is represented when logged
+    def __repr__(self):
+        ret =  'This is an unimplemented description.'
+        return ret

@@ -17,3 +17,8 @@ class ServerMock:
         Utils.dlog(self.name, "Starting server")
         
         self.server.start()
+
+    # How this object is represented when logged
+    def __repr__(self):
+        ret =  'This is an unimplemented description.'
+        return ret

@@ -50,3 +50,8 @@ class Server:
     #TODO: log the clients IP address and any other relevant information (#packets, etc)
     def soundOff(self):
         Utils.log(self.id, 'Hello. I am a server.')
+
+    # How this object is represented when logged
+    def __repr__(self):
+        ret =  'This is an unimplemented description.'
+        return ret

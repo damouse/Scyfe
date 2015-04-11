@@ -13,3 +13,8 @@ class Notary:
     #Requires a reference to its parent. Directly accesses other modules on the parent
     def __init__(self, parent):
         self.parent = parent
+
+    # How this object is represented when logged
+    def __repr__(self):
+        ret =  'This is an unimplemented description.'
+        return ret

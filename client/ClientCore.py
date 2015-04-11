@@ -62,6 +62,7 @@ class Client:
     def handleMessage(self, message):
         pass
 
+
     ''' Utilities and Bookeeping '''
     #Make this client sound off indicating it is alive. 
     #TODO: log the clients IP address and any other relevant information (#packets, etc)

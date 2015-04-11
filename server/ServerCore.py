@@ -45,6 +45,12 @@ class Server:
         pass
 
 
+    ''' Packet Receiving and Processing '''
+    # We have received a new packet. Figure out what to do with it.
+    def handleMessage(self, message):
+        pass
+
+
     ''' Utilities and Bookeeping '''
     #Make this client sound off indicating it is alive. 
     #TODO: log the clients IP address and any other relevant information (#packets, etc)

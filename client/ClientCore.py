@@ -29,7 +29,8 @@ class Client:
         self.dispatch = Dispatch.Dispatch(self)
 
     #Connect to the server synchonously. Receive group assignments and default variables and values
-    def connect(self,serverIp,serverPort):
+    def connect(self, serverIp, serverPort):
+        Utils.log(self.id, "Started client")
         # Create a TCP/IP socket
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = (serverIp, serverPort)

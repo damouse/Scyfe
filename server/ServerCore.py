@@ -15,7 +15,6 @@ from slander import *
 
 class Server:
     MAX_CONNECTIONS=5
-    TCP_PORT=40000
 
     def __init__(self, label, application):
         self.id = label #random, non-colliding string
@@ -35,11 +34,13 @@ class Server:
     #Start listening and be ready to accept clients
     #Depending on implementation, may want to read all existing client variables here
     #Starts server on specified ipAddress
-    def start(self,ipAddress):
+    def start(self, ipAddress, port):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        sock.bind((ipAddress, self.TCP_PORT))
+        sock.bind((ipAddress, port))
         sock.listen(self.MAX_CONNECTIONS)
+
+        Utils.log(self.id, "Server started listening")
 
         while True:
             connection, client_address = sock.accept()

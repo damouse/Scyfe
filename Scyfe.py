@@ -12,12 +12,16 @@ verifying project functionality or wraps a client/server instance as a mock (mos
 pretending to be an application implementation.)
 '''
 import sys
+from multiprocessing import Process
+import os
 
 from tests import *
 from utils import Utils
 
 fname = 'Main'
 
+basePort = 7778
+baseAddr = '127.0.0.1'
 
 #major functionality
 def runAsClient(serverIp, label):
@@ -28,13 +32,22 @@ def runAsServer(serverIp):
 
 def runStubbedClient(serverIp, label):
     client = ClientMock.ClientMock(label)
-    client.connect(serverIp,40000)
+    client.connect(serverIp, basePort)
 
-def runStubbedServer(serverIp):
+def runStubbedServer():
     server = ServerMock.ServerMock()
+    server.start(baseAddr, basePort)
 
-    server.start("127.0.0.1")
+#testing live local simualtion
+def runSimulation():
+    server = Process(target = runStubbedServer)
+    client = Process(target = runStubbedClient, args = ('127.0.0.1', 'TestClient'))
 
+    server.start()
+    client.start()
+
+    server.join()
+    client.join()
 
 #development tests
 def runLocalTests():
@@ -47,13 +60,14 @@ def runLocalTests():
 
 if __name__ == "__main__":
     # runLocalTests()
+    # runSimulation()
 
     #runAsClient()
     #runAsServer()
 
-    serverOrClient=sys.argv[1]
-    if(serverOrClient=='c'):
-        print("made it here")
+    serverOrClient = sys.argv[1]
+    if(serverOrClient == 'c'):
         runStubbedClient('127.0.0.1', 40000)
     else:
-        runStubbedServer('127.0.0.1')
+        runStubbedServer()
+

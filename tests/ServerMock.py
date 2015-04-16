@@ -8,15 +8,13 @@ from utils import *
 from server import ServerCore
 
 class ServerMock:
-    #Requires a reference to its parent. Directly accesses other modules on the parent
     def __init__(self):
         self.name = "ServerMock"
         self.server = ServerCore.Server("Server", self)
 
-    def start(self,ipAddress):
+    def start(self, ipAddress, port):
         Utils.dlog(self.name, "Starting server")
-        
-        self.server.start(ipAddress)
+        self.server.start(ipAddress, port)
 
     # How this object is represented when logged
     def __repr__(self):

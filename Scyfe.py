@@ -20,7 +20,7 @@ from utils import Utils
 
 fname = 'Main'
 
-basePort = 7778
+basePort = 7779
 baseAddr = '127.0.0.1'
 
 #major functionality
@@ -51,23 +51,20 @@ def runSimulation():
 
 #development tests
 def runLocalTests():
-    Utils.log(fname, 'Starting all tests')
-
+    Utils.log(fname, 'Starting tests')
     Stable.runTests()
-
-    Utils.log(fname, 'All Tests Completed')
 
 
 if __name__ == "__main__":
     # runLocalTests()
-    # runSimulation()
+    runSimulation()
 
     #runAsClient()
     #runAsServer()
 
-    serverOrClient = sys.argv[1]
-    if(serverOrClient == 'c'):
-        runStubbedClient('127.0.0.1', 40000)
-    else:
-        runStubbedServer()
+    # serverOrClient = sys.argv[1]
+    # if(serverOrClient == 'c'):
+    #     runStubbedClient('127.0.0.1', 40000)
+    # else:
+    #     runStubbedServer()
 

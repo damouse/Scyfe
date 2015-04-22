@@ -7,15 +7,12 @@ import socket
 
 from utils import *
 from administration import *
-from chlorine import *
 from dispatch import *
 from notary import *
 from relay import *
 from slander import *
 
 class Server:
-    MAX_CONNECTIONS=5
-
     def __init__(self, label, application):
         self.id = label #random, non-colliding string
         self.label = label
@@ -31,24 +28,24 @@ class Server:
         self.slander = Slander.Slander(self)
         self.dispatch = Dispatch.Dispatch(self)
 
+
+    ''' Lifecycle '''
     #Start listening and be ready to accept clients
     #Depending on implementation, may want to read all existing client variables here
     #Starts server on specified ipAddress
-    def start(self, ipAddress, port):
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        sock.bind((ipAddress, port))
-        sock.listen(self.MAX_CONNECTIONS)
+    def start(self, addr, port):
+        self.relay.open(addr, port)
 
-        Utils.log(self.id, "Server started listening")
+    # Close down shop.
+    def stop(self):
+        pass
 
-        while True:
-            connection, client_address = sock.accept()
-            data = connection.recv(1024)
-            print(client_address)
-            print(data)
-            connection.close()
+    #An error or kick has occured. Shut everything down. Do not pass go. 
+    def hcf(self):
+        Utils.log(self.id, "WARN-- HFC called!")
 
+        self.chlorine.kill()
+        self.relay.close()
 
 
     #create Variable for clients 
@@ -67,7 +64,14 @@ class Server:
     ''' Packet Receiving and Processing '''
     # We have received a new packet. Figure out what to do with it.
     def handleMessage(self, message):
-        pass
+        Utils.log(self.id, "Message Received")
+        print message
+        self.hcf()
+
+    #handle a newly created connection
+    def handleConnection(self, sockInfo):
+        Utils.log(self.id, "Connection Received")
+        self.chlorine.openConnection(sockInfo)
 
 
     ''' Utilities and Bookeeping '''

@@ -7,7 +7,6 @@ import socket
 
 from utils import *
 from administration import *
-from chlorine import *
 from dispatch import *
 from notary import *
 from relay import *
@@ -28,18 +27,26 @@ class Client:
         self.slander = Slander.Slander(self)
         self.dispatch = Dispatch.Dispatch(self)
 
-    #Connect to the server synchonously. Receive group assignments and default variables and values
-    def connect(self, serverIp, serverPort):
-        Utils.log(self.id, "Started client")
-        # Create a TCP/IP socket
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server_address = (serverIp, serverPort)
-        sock.connect(server_address)
-        sock.sendall("This is the message")
-        sock.close()
 
+    ''' Lifecycle management '''
+    #Connect to the server synchonously. Receive group assignments and default variables and values
+    def connect(self, addr, port):
+        Utils.log(self.id, "Started client")
+
+        self.relay.TEST(addr, port)
+
+        #self.relay.start(addr, port)
+
+    #Close the relay, disconnect gracefully, informing all peers and clients of the change
     def disconnect(self):
         pass
+
+    #An error or kick has occured. Shut everything down. Do not pass go. 
+    def hcf(self):
+        Utils.log(self.id, "WARN-- HFC called!")
+
+        self.chlorine.kill()
+        self.relay.close()
 
 
     ''' Application Interface '''
@@ -52,23 +59,20 @@ class Client:
     def inputChanged(self, client, variable):
         Utils.dlog(self.id, "Alerting application of a validated variable change on client: " + client + " variable: " + variable)
 
-    #We have successfully connected to the server
-    def connectedToServer(self):
-        Utils.dlog(self.id, "Connected to server")
-
-        #inform the application
-
-    #We were removed from the server (could be intentional or a kick)
-    def disconnectedFromServer(self):
-        Utils.dlog(self.id, "Disconnected from server")
-
-        #inform the application
+    #Application notification-- a message has been received the app is likely interested in
+    def alertApplication(self, message):
+        pass
 
 
     ''' Packet Receiving and Processing '''
     # We have received a new packet. Figure out what to do with it.
     def handleMessage(self, message):
-        pass
+        Utils.log(self.id, "Message Received")
+        print message
+
+    #handle a newly created connection
+    def handleConnection(self, sockInfo):
+        self.chlorine.openConnection(sockInfo, self)
 
 
     ''' Utilities and Bookeeping '''

@@ -18,9 +18,11 @@ import os
 from tests import *
 from utils import Utils
 
+import time
+
 fname = 'Main'
 
-basePort = 7779
+basePort = 7804
 baseAddr = '127.0.0.1'
 
 #major functionality
@@ -30,9 +32,9 @@ def runAsClient(serverIp, label):
 def runAsServer(serverIp):
     pass
 
-def runStubbedClient(serverIp, label):
+def runStubbedClient(addr, port, label):
     client = ClientMock.ClientMock(label)
-    client.connect(serverIp, basePort)
+    client.connect(addr, port)
 
 def runStubbedServer():
     server = ServerMock.ServerMock()
@@ -41,7 +43,7 @@ def runStubbedServer():
 #testing live local simualtion
 def runSimulation():
     server = Process(target = runStubbedServer)
-    client = Process(target = runStubbedClient, args = ('127.0.0.1', 'TestClient'))
+    client = Process(target = runStubbedClient, args = (baseAddr, basePort, "Test Client"))
 
     server.start()
     client.start()
@@ -62,9 +64,5 @@ if __name__ == "__main__":
     #runAsClient()
     #runAsServer()
 
-    # serverOrClient = sys.argv[1]
-    # if(serverOrClient == 'c'):
-    #     runStubbedClient('127.0.0.1', 40000)
-    # else:
-    #     runStubbedServer()
-
+    #runStubbedClient(baseAddr, basePort, "Test Client")
+    #runStubbedServer()

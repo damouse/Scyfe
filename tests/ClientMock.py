@@ -13,9 +13,9 @@ class ClientMock:
         self.name = name + " wrapper"
         self.client = ClientCore.Client(name, self)
 
-    def connect(self, serverIp, serverPort):
+    def connect(self, addr, port):
         Utils.dlog(self.name, "Client connecting")
-        self.client.connect(serverIp, serverPort)
+        self.client.connect(addr, port)
 
     # How this object is represented when logged
     def __repr__(self):

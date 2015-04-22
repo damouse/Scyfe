@@ -52,21 +52,8 @@ if __name__ == "__main__":
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((host,port))
 
-
     packet = TestObject(1000)
     pickled = pickle.dumps(packet)
     send_msg(s, pickled)
-    # s.send()
 
-    # sys.stdout.write('%')
-
-    # while 1:
-    #     # read from keyboard
-    #     line = sys.stdin.readline()
-    #     if line == '\n':
-    #         break
-    #     s.send(line)
-    #     data = s.recv(size)
-    #     sys.stdout.write(data)
-    #     sys.stdout.write('%')
     s.close()

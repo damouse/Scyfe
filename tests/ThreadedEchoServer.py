@@ -9,20 +9,33 @@ import select
 import socket 
 import sys 
 import threading 
+import pickle
+
+import struct
+
+class TestObject:
+    def __init__(self, num):
+        self.values = []
+
+        for i in range(0, num):
+            self.values.append(i)
+
+    def __repr__(self):
+        return "" + str(self.values)
 
 class Server: 
     def __init__(self): 
-        self.host = '' 
-        self.port = 50000 
+        self.host = '127.0.0.1' 
+        self.port = 11234 
         self.backlog = 5 
-        self.size = 1024 
+        self.size = 4096 
         self.server = None 
         self.threads = [] 
 
     def open_socket(self): 
         try: 
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
-            self.server.bind((self.host,self.port)) 
+            self.server.bind((self.host, self.port)) 
             self.server.listen(5) 
         except socket.error, (value,message): 
             if self.server: 
@@ -32,10 +45,11 @@ class Server:
 
     def run(self): 
         self.open_socket() 
-        input = [self.server,sys.stdin] 
+        input = [self.server] 
+        # input = [self.server, sys.stdin] 
         running = 1 
         while running: 
-            inputready,outputready,exceptready = select.select(input,[],[]) 
+            inputready, outputready, exceptready = select.select(input,[],[]) 
 
             for s in inputready: 
 
@@ -44,6 +58,13 @@ class Server:
                     c = Client(self.server.accept()) 
                     c.start() 
                     self.threads.append(c) 
+
+                    #TEMP
+                    for c in self.threads: 
+                        c.join()
+
+                    self.server.close() 
+                    sys.exit(0)
 
                 elif s == sys.stdin: 
                     # handle standard input 
@@ -66,12 +87,46 @@ class Client(threading.Thread):
     def run(self): 
         running = 1 
         while running: 
-            data = self.client.recv(self.size) 
+            # data = self.client.recv(self.size) 
+            data = recv_msg(self.client)
+
             if data: 
-                self.client.send(data) 
+                self.client.send(data)
+
+                #TEMP-- close right away 
+                unpick = pickle.loads(data)
+                print(unpick)
+                self.client.close()
+                sys.exit(0)
             else: 
                 self.client.close() 
                 running = 0 
+
+def send_msg(sock, msg):
+    msg = struct.pack('>I', len(msg)) + msg
+    sock.sendall(msg)
+
+def recv_msg(sock):
+    raw_msglen = recvall(sock, 4)
+    if not raw_msglen:
+        return None
+
+    msglen = struct.unpack('>I', raw_msglen)[0]
+    return recvall(sock, msglen)
+
+def recvall(sock, n):
+    # Helper function to recv n bytes or return None if EOF is hit
+    data = ''
+    while len(data) < n:
+        packet = sock.recv(n - len(data))
+
+        if not packet:
+            return None
+
+        data += packet
+
+    return data
+
 
 if __name__ == "__main__": 
     s = Server() 

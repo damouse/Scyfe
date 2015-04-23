@@ -32,7 +32,7 @@ class Chlorine:
         worker.start()
 
     #terminate all connections, join all worker threads, and return
-    def kill():
+    def kill(self):
         Utils.log(self.name, "Closing worker threads...")
         for worker in self.workers:
             worker.close()
@@ -48,6 +48,8 @@ class ConnectionThread(threading.Thread):
         threading.Thread.__init__(self) 
         self.name = "WorkerThread"
 
+        Utils.dlog(self.name, "Worker Init: " + str(client) + " " + str(address))
+
         self.client = client 
         self.address = address 
         self.size = 4096 
@@ -60,7 +62,13 @@ class ConnectionThread(threading.Thread):
         running = True 
 
         while running: 
-            data = NetworkFunctions.recv_msg(self.client)
+            data = None
+            try: 
+                data = NetworkFunctions.recv_msg(self.client)
+            except: 
+                self.parent.hcf()
+                return
+
             Utils.log(self.name, "Received message")
 
             if data: 

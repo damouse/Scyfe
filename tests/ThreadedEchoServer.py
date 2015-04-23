@@ -26,7 +26,7 @@ class TestObject:
 class Server: 
     def __init__(self): 
         self.host = '127.0.0.1' 
-        self.port = 11234 
+        self.port = 7809 
         self.backlog = 5 
         self.size = 4096 
         self.server = None 
@@ -94,8 +94,9 @@ class Client(threading.Thread):
                 self.client.send(data)
 
                 #TEMP-- close right away 
+                print data
                 unpick = pickle.loads(data)
-                print(unpick)
+                print unpick
                 self.client.close()
                 sys.exit(0)
             else: 

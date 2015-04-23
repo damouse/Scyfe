@@ -44,8 +44,8 @@ class Server:
     def hcf(self):
         Utils.log(self.id, "WARN-- HFC called!")
 
-        self.chlorine.kill()
-        self.relay.close()
+        #self.chlorine.kill()
+        #self.relay.close()
 
 
     #create Variable for clients 

@@ -41,11 +41,11 @@ class Relay:
             Utils.log(self.name, "Could not open socket: " + message)
             sys.exit(1) 
 
-        input = [self.openSocket] 
+        sockIn = [self.openSocket] 
         self.relayOpen = True 
 
         while self.relayOpen: 
-            inputready, outputready, exceptready = select.select(input,[],[]) 
+            inputready, outputready, exceptready = select.select(sockIn,[],[]) 
 
             if not self.relayOpen: 
                 Utils.log(self.name, "Relay received a message after being closed. Ignoring the message")
@@ -66,10 +66,6 @@ class Relay:
 
     # Opens a connection to a given entity
     def connect(self, target):
-        pass
-
-    #informs the entity that we are closing connection to them 
-    def close(self, target):
         pass
 
     # Send a message to a target. Assumes a connection has already been opened with the target. 

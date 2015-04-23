@@ -8,6 +8,9 @@ fname = "Network Functions"
 def send_msg(sock, msg):
     msg = pickle.dumps(msg)
     msg = struct.pack('>I', len(msg)) + msg
+
+    Utils.log(fname, "Sending message of length: " + str(len(msg)))
+
     sock.sendall(msg)
 
 def recv_msg(sock):
@@ -15,9 +18,10 @@ def recv_msg(sock):
 
     raw_msglen = recvall(sock, 4)
 
-    Utils.dlog(fname, "Received nothing")
+    Utils.dlog(fname, "Received message of length: " + raw_msglen)
     if not raw_msglen:
         return None
+        Utils.dlog(fname, "Received nothing")
 
     msglen = struct.unpack('>I', raw_msglen)[0]
     Utils.dlog(fname, "Waiting for a message with " + str(msglen) + " bytes")
@@ -35,4 +39,6 @@ def recvall(sock, n):
 
         data += packet
 
-    return pickle.loads(data)
+    # Utils.log(fname, data)
+    data = pickle.loads(data)
+    return data

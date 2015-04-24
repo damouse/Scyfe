@@ -48,8 +48,6 @@ class ConnectionThread(threading.Thread):
         threading.Thread.__init__(self) 
         self.name = "WorkerThread"
 
-        Utils.dlog(self.name, "Worker Init: " + str(client) + " " + str(address))
-
         self.client = client 
         self.address = address 
         self.size = 4096 

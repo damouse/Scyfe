@@ -8,4 +8,4 @@ class TestMessage:
             self.values.append(i)
 
     def __repr__(self):
-        return "" + str(self.values)
+        return "I am a TestMessage packet with " + str(len(self.values)) + " sequential integers"

@@ -42,7 +42,7 @@ class Server:
 
     #An error or kick has occured. Shut everything down. Do not pass go. 
     def hcf(self):
-        Utils.log(self.id, "WARN-- HFC called!")
+        Utils.log(self.id, "WARN-- HCF called!")
 
         #self.chlorine.kill()
         #self.relay.close()
@@ -66,6 +66,8 @@ class Server:
     def handleMessage(self, message):
         Utils.log(self.id, "Message Received")
         print message
+
+        # Utils.dlog(self.id, "Ponging back a message to the client...")
         # self.hcf()
 
     #handle a newly created connection

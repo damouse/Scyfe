@@ -14,9 +14,7 @@ from relay import TestMessage
 import select 
 import socket 
 import sys 
-
-import pickle
-import struct
+import threading 
 
 
 class Relay:
@@ -27,42 +25,24 @@ class Relay:
         self.openSocket = None
         self.relayOpen = False
 
+        self.listener = None
+
 
     #Open the relay for communication
     def open(self, addr, port):
-        try: 
-            self.openSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
-            self.openSocket.bind((addr, port)) 
-            self.openSocket.listen(5) 
+        self.relayOpen = True
+        Utils.dlog(self.name, "Starting Thread")
+        self.listener = RelayListener(self.parent, 1, addr, port, self)
 
-        except socket.error, (value,message): 
-            if self.openSocket: 
-                self.openSocket.close() 
-            Utils.log(self.name, "Could not open socket: " + message)
-            sys.exit(1) 
+        self.listener.start()
 
-        sockIn = [self.openSocket] 
-        self.relayOpen = True 
-
-        while self.relayOpen: 
-            inputready, outputready, exceptready = select.select(sockIn,[],[]) 
-
-            if not self.relayOpen: 
-                Utils.log(self.name, "Relay received a message after being closed. Ignoring the message")
-                return
-
-            Utils.dlog(self.name, "Received something " + str(inputready))
-            for s in inputready: 
-                if s == self.openSocket: 
-                    self.parent.handleConnection(self.openSocket.accept())
-                else:
-                    Utils.log(self.name, "WARN-- received something not considered to be a socket")
+        #this is here so the program doesn't complete and for no other reason-- should make a spin in parent
+        self.listener.join()
 
     #end communication through this relay. Note-- does not close worker threads
     def close(self):
-        self.openSocket.close()
         self.relayOpen = False
-
+        self.listener.join()
 
     # Opens a connection to a given entity
     def connect(self, target):
@@ -88,4 +68,46 @@ class Relay:
         ret =  'This is an unimplemented description.'
         return ret
 
+'''
+A threaded wrapper around the listening blocking call. 
+
+This thread listens for incoming connections and passes new conncetions to the parent 
+to handle on receive. It polls for a suicide flag every n seconds. 
+'''
+class RelayListener(threading.Thread):
+    def __init__(self, parent, timeout, addr, port, relay):
+        threading.Thread.__init__(self) 
+        self.name = "Relay Listener"
+        self.addr = addr
+        self.port = port
+        self.parent = parent
+        self.timeout = timeout
+        self.relay = relay
+
+    def run(self):
+        Utils.dlog(self.name, "Listener started")
+
+        try: 
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+            sock.bind((self.addr, self.port)) 
+            sock.listen(5) 
+
+        except socket.error, (value,message): 
+            if sock: 
+                sock.close() 
+            Utils.log(self.name, "Could not open socket: " + message)
+            sys.exit(1) 
+
+        sockIn = [sock] 
+        while self.relay.relayOpen:
+            Utils.dlog(self.name, "Listening for connections...")
+            inputready, outputready, exceptready = select.select(sockIn,[],[], self.timeout) 
+
+            if not self.relay.relayOpen: 
+                sock.close()
+                return
+
+            for s in inputready: 
+                if s == sock: 
+                    self.parent.handleConnection(sock.accept())
 

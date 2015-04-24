@@ -26,7 +26,7 @@ class TestObject:
 class Server: 
     def __init__(self): 
         self.host = '127.0.0.1' 
-        self.port = 7809 
+        self.port = 7822
         self.backlog = 5 
         self.size = 4096 
         self.server = None 

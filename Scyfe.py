@@ -18,11 +18,12 @@ import os
 from tests import *
 from utils import Utils
 
+from time import sleep
 import time
 
 fname = 'Main'
 
-basePort = 7819
+basePort = 7831
 baseAddr = '127.0.0.1'
 
 #major functionality
@@ -48,8 +49,12 @@ def runSimulation():
     server.start()
     client.start()
 
-    server.join()
-    client.join()
+    # server.join()
+    # client.join()
+
+    sleep(2)
+    server.terminate()
+    client.terminate()
 
 #development tests
 def runLocalTests():

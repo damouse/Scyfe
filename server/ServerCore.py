@@ -66,7 +66,7 @@ class Server:
     def handleMessage(self, message):
         Utils.log(self.id, "Message Received")
         print message
-        self.hcf()
+        # self.hcf()
 
     #handle a newly created connection
     def handleConnection(self, sockInfo):

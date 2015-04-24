@@ -63,16 +63,19 @@ class ConnectionThread(threading.Thread):
 
         while running: 
             data = None
-            try: 
-                data = NetworkFunctions.recv_msg(self.client)
-            except: 
-                self.parent.hcf()
-                return
+            data = NetworkFunctions.recv_msg(self.client)
+
+            # try: 
+            #     data = NetworkFunctions.recv_msg(self.client)
+            # except Error as e: 
+            #     Utils.log(self.name, "WARN-- exception when processing the data: " + str(e))
+            #     self.parent.hcf()
+            #     return
 
             Utils.log(self.name, "Received message")
 
             if data: 
-                parent.handleMessage(data)
+                self.parent.handleMessage(data)
             else: 
                 #inform parent the connection was closed remotely
                 self.client.close() 

@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
 
     host = 'localhost'
-    port = 7809
+    port = 7829
     size = 4096
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((host,port))

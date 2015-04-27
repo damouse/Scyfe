@@ -22,7 +22,6 @@ class Client:
         #Modules
         self.relay = Relay.Relay(self)
         self.administration = Administration.Administration(self)
-        self.chlorine = Chlorine.Chlorine(self)
         self.notary = Notary.Notary(self)
         self.slander = Slander.Slander(self)
         self.dispatch = Dispatch.Dispatch(self)
@@ -72,7 +71,7 @@ class Client:
 
     #handle a newly created connection
     def handleConnection(self, sockInfo):
-        self.chlorine.openConnection(sockInfo, self)
+        self.relay.connect(sockInfo, self)
 
 
     ''' Utilities and Bookeeping '''

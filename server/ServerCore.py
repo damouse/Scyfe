@@ -23,7 +23,6 @@ class Server:
         #Modules
         self.relay = Relay.Relay(self)
         self.administration = Administration.Administration(self)
-        self.chlorine = Chlorine.Chlorine(self)
         self.notary = Notary.Notary(self)
         self.slander = Slander.Slander(self)
         self.dispatch = Dispatch.Dispatch(self)
@@ -73,7 +72,7 @@ class Server:
     #handle a newly created connection
     def handleConnection(self, sockInfo):
         Utils.log(self.id, "Connection Received")
-        self.chlorine.openConnection(sockInfo)
+        self.relay.connect(sockInfo)
 
 
     ''' Utilities and Bookeeping '''

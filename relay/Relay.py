@@ -27,6 +27,8 @@ class Relay:
 
         self.listener = None
 
+        self.workers = []
+        self.poolSize = 10
 
     #Open the relay for communication
     def open(self, addr, port):
@@ -41,11 +43,25 @@ class Relay:
 
     #end communication through this relay. Note-- does not close worker threads
     def close(self):
+        Utils.log(self.name, "Closing worker threads...")
+        for worker in self.workers:
+            worker.close()
+
         self.relayOpen = False
+        for worker in self.workers:
+            worker.join()
+
+        Utils.log(self.name, "All threads closed, done.")
+
         self.listener.join()
 
     # Opens a connection to a given entity
-    def connect(self, target):
+    def connect(self, sockinfo):
+        worker = ConnectionThread(sockinfo, self.parent)
+        self.workers.append(worker)
+        worker.start()
+
+    def disconnect(self, target):
         pass
 
     # Send a message to a target. Assumes a connection has already been opened with the target. 
@@ -111,3 +127,47 @@ class RelayListener(threading.Thread):
                 if s == sock: 
                     self.parent.handleConnection(sock.accept())
 
+
+''' Represents a connection to a remote client or server '''
+class ConnectionThread(threading.Thread): 
+    def __init__(self, (client, address), parent): 
+        threading.Thread.__init__(self) 
+        self.name = "WorkerThread"
+
+        self.client = client 
+        self.address = address 
+        self.size = 4096 
+        self.parent = parent #client or server instance
+        self.running = False
+
+    def run(self):
+        Utils.log(self.name, "Worker thread started")
+
+        running = True 
+
+        while running: 
+            data = None
+            data = NetworkFunctions.recv_msg(self.client)
+
+            # try: 
+            #     data = NetworkFunctions.recv_msg(self.client)
+            # except Error as e: 
+            #     Utils.log(self.name, "WARN-- exception when processing the data: " + str(e))
+            #     self.parent.hcf()
+            #     return
+
+            Utils.log(self.name, "Received message")
+
+            if data: 
+                self.parent.handleMessage(data)
+            else: 
+                #inform parent the connection was closed remotely
+                self.client.close() 
+                running = False
+
+    def send(self, message):
+        self.client.send(message)
+
+    def close(self):
+        self.running = False
+        self.client.close()

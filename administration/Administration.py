@@ -2,6 +2,14 @@
 Top level protocol management. 
 
 This file defines all the possible administrative protocol actions. 
+
+Types of messages
+    Group
+        join, leave, handshake
+    Keys
+        keyswap, keyask
+    Variables
+        change, validate, propogate
 '''
 
 from utils import *

@@ -60,6 +60,7 @@ class Relay:
         worker = ConnectionThread(sockinfo, self.parent)
         self.workers.append(worker)
         worker.start()
+        worker.listen()
 
     def disconnect(self, target):
         pass
@@ -116,7 +117,6 @@ class RelayListener(threading.Thread):
 
         sockIn = [sock] 
         while self.relay.relayOpen:
-            Utils.dlog(self.name, "Listening for connections...")
             inputready, outputready, exceptready = select.select(sockIn,[],[], self.timeout) 
 
             if not self.relay.relayOpen: 
@@ -141,20 +141,15 @@ class ConnectionThread(threading.Thread):
         self.running = False
 
     def run(self):
-        Utils.log(self.name, "Worker thread started")
+        pass
 
+    def listen(self):
+        Utils.log(self.name, "Worker thread started")
         running = True 
 
         while running: 
             data = None
             data = NetworkFunctions.recv_msg(self.client)
-
-            # try: 
-            #     data = NetworkFunctions.recv_msg(self.client)
-            # except Error as e: 
-            #     Utils.log(self.name, "WARN-- exception when processing the data: " + str(e))
-            #     self.parent.hcf()
-            #     return
 
             Utils.log(self.name, "Received message")
 
@@ -164,6 +159,9 @@ class ConnectionThread(threading.Thread):
                 #inform parent the connection was closed remotely
                 self.client.close() 
                 running = False
+
+    def connect(self, sockinfo):
+        pass
 
     def send(self, message):
         self.client.send(message)

@@ -35,7 +35,7 @@ def runAsServer(serverIp):
 
 def runStubbedClient(addr, port, label):
     client = ClientMock.ClientMock(label)
-    client.connect(addr, port)
+    client.start(addr, port, baseAddr, basePort)
 
 def runStubbedServer():
     server = ServerMock.ServerMock()
@@ -44,9 +44,10 @@ def runStubbedServer():
 #testing live local simualtion
 def runSimulation():
     server = Process(target = runStubbedServer)
-    client = Process(target = runStubbedClient, args = (baseAddr, basePort, "Test Client"))
+    client = Process(target = runStubbedClient, args = (baseAddr, basePort + 1, "Test Client"))
 
     server.start()
+    sleep(1)
     client.start()
 
     # server.join()

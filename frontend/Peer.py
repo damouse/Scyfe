@@ -1,5 +1,5 @@
 '''
-Entry point for client-side module. 
+Base class for client and server instances. covers the functionality shared by both. 
 '''
 
 import sys
@@ -33,7 +33,7 @@ class Peer:
 
 
     ''' Lifecycle management '''
-    #Connect to the server synchonously. Receive group assignments and default variables and values
+    #Start the listener with the given address and port
     def start(self, addr, port):
         Utils.log(self.id, "Started client")
         self.running = True
@@ -89,12 +89,6 @@ class Peer:
     #TODO: log the clients IP address and any other relevant information (#packets, etc)
     def soundOff(self):
         Utils.log(self.id, 'Hello. I am a client.')
-
-    def test(self):
-        self.relay.connect(addr, port)
-
-        test = TestMessage.TestMessage(100)
-        self.relay.send(addr, port, test)
 
     # How this object is represented when logged
     def __repr__(self):

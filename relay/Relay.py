@@ -69,16 +69,6 @@ class Relay:
         worker = [x for x in self.workers if x.addr == addr and x.port == port][0]
         worker.send(message)
 
-    def TEST(self, addr, port):
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect((addr, port))
-
-        packet = TestMessage.TestMessage(1000)
-        NetworkFunctions.send_msg(s, packet)
-
-        s.close()
-
-
     # How this object is represented when logged
     def __repr__(self):
         ret =  'This is an unimplemented description.'

@@ -4,6 +4,7 @@ Entry point for client-side module.
 
 import sys
 import socket
+import threading 
 
 from utils import *
 from administration import *
@@ -12,13 +13,16 @@ from notary import *
 from relay import *
 from slander import *
 
-class Client:
+
+class Peer:
     def __init__(self, label, application):
         self.id = label #random, non-colliding string
         self.variables = []
         self.application = application
 
         self.group = None
+        self.running = False
+        self.spinWaitThread = None
 
         #Modules
         self.relay = Relay.Relay(self)
@@ -30,17 +34,21 @@ class Client:
 
     ''' Lifecycle management '''
     #Connect to the server synchonously. Receive group assignments and default variables and values
-    def connect(self, addr, port):
+    def start(self, addr, port):
         Utils.log(self.id, "Started client")
+        self.running = True
+        self.relay.open(addr, port)
 
-        self.relay.connect(addr, port)
-
-        test = TestMessage.TestMessage(100)
-        self.relay.send(addr, port, test)
+        self.spinWaitThread = threading.Thread(target = self.mainSpinLoop)
+        self.spinWaitThread.start()
 
     #Close the relay, disconnect gracefully, informing all peers and clients of the change
-    def disconnect(self):
-        pass
+    def stop(self):
+        self.running = False
+
+    def mainSpinLoop(self):
+        while self.running:
+            pass
 
     #An error or kick has occured. Shut everything down. Do not pass go. 
     def hcf(self):
@@ -81,6 +89,12 @@ class Client:
     #TODO: log the clients IP address and any other relevant information (#packets, etc)
     def soundOff(self):
         Utils.log(self.id, 'Hello. I am a client.')
+
+    def test(self):
+        self.relay.connect(addr, port)
+
+        test = TestMessage.TestMessage(100)
+        self.relay.send(addr, port, test)
 
     # How this object is represented when logged
     def __repr__(self):

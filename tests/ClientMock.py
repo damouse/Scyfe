@@ -5,7 +5,7 @@ This wrapper interfaces with the ClientCore object and pretends to be a normal s
 '''
 
 from utils import *
-from client import ClientCore
+from frontend import *
 
 class ClientMock:
     #Requires a reference to its parent. Directly accesses other modules on the parent
@@ -15,7 +15,7 @@ class ClientMock:
 
     def connect(self, addr, port):
         Utils.dlog(self.name, "Client connecting")
-        self.client.connect(addr, port)
+        self.client.start(addr, port)
 
     # How this object is represented when logged
     def __repr__(self):

@@ -5,8 +5,7 @@ is in a stable state with regards to configuration
 
 import sys
 from utils import *
-from client import *
-from server import *
+from frontend import *
 
 
 def stable():

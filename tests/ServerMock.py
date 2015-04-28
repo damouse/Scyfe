@@ -5,7 +5,7 @@ This wrapper interfaces with the ServerCore object and pretends to be a normal s
 '''
 
 from utils import *
-from server import ServerCore
+from frontend import *
 
 class ServerMock:
     def __init__(self):

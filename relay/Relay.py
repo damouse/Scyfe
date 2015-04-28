@@ -38,9 +38,6 @@ class Relay:
 
         self.listener.start()
 
-        #this is here so the program doesn't complete and for no other reason-- should make a spin in parent
-        self.listener.join()
-
     #end communication through this relay. Note-- does not close worker threads
     def close(self):
         Utils.log(self.name, "Closing worker threads...")
@@ -59,13 +56,10 @@ class Relay:
     def acceptConnection(self, sockinfo):
         worker = ConnectionThread(self.parent, sockinfo, None)
         self.workers.append(worker)
-        worker.start()
-        worker.listen()
 
     def connect(self, addr, port):
         worker = ConnectionThread(self.parent, (None, addr), port)
         self.workers.append(worker)
-        worker.start()
 
     def disconnect(self, target):
         pass
@@ -134,9 +128,8 @@ class RelayListener(threading.Thread):
 
 
 ''' Represents a connection to a remote client or server '''
-class ConnectionThread(threading.Thread): 
+class ConnectionThread: 
     def __init__(self, parent, (client, addr), port): 
-        threading.Thread.__init__(self) 
         self.name = "WorkerThread"
 
         self.addr = addr 
@@ -153,14 +146,15 @@ class ConnectionThread(threading.Thread):
         self.parent = parent #client or server instance
         self.running = False
 
-    def run(self):
-        pass
+        #start listening thread
+        self.thread = threading.Thread(target = self.listen)
+        self.thread.start()
 
     def listen(self):
         Utils.log(self.name, "Worker thread started")
-        running = True 
+        self.running = True 
 
-        while running: 
+        while self.running: 
             data = None
             data = NetworkFunctions.recv_msg(self.socket)
 
@@ -171,11 +165,12 @@ class ConnectionThread(threading.Thread):
             else: 
                 #inform parent the connection was closed remotely
                 self.socket.close() 
-                running = False
+                self.running = False
 
     def send(self, message):
         NetworkFunctions.send_msg(self.socket, message)
 
     def close(self):
         self.running = False
+        self.thread.stop()
         self.socket.close()

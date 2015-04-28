@@ -56,18 +56,24 @@ class Relay:
         self.listener.join()
 
     # Opens a connection to a given entity
-    def connect(self, sockinfo):
-        worker = ConnectionThread(sockinfo, self.parent)
+    def acceptConnection(self, sockinfo):
+        worker = ConnectionThread(self.parent, sockinfo, None)
         self.workers.append(worker)
         worker.start()
         worker.listen()
+
+    def connect(self, addr, port):
+        worker = ConnectionThread(self.parent, (None, addr), port)
+        self.workers.append(worker)
+        worker.start()
 
     def disconnect(self, target):
         pass
 
     # Send a message to a target. Assumes a connection has already been opened with the target. 
-    def send(self, target, message):
-        pass
+    def send(self, addr, port, message):
+        worker = [x for x in self.workers if x.addr == addr and x.port == port][0]
+        worker.send(message)
 
     def TEST(self, addr, port):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -76,7 +82,6 @@ class Relay:
         packet = TestMessage.TestMessage(1000)
         NetworkFunctions.send_msg(s, packet)
 
-        Utils.log("RelayTesting", "Sent test message.")
         s.close()
 
 
@@ -130,12 +135,20 @@ class RelayListener(threading.Thread):
 
 ''' Represents a connection to a remote client or server '''
 class ConnectionThread(threading.Thread): 
-    def __init__(self, (client, address), parent): 
+    def __init__(self, parent, (client, addr), port): 
         threading.Thread.__init__(self) 
         self.name = "WorkerThread"
 
-        self.client = client 
-        self.address = address 
+        self.addr = addr 
+
+        #if we are passed a socket then a connection has already been made
+        if client is not None:
+            self.socket = client 
+        else:
+            self.port = port
+            self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.socket.connect((addr, port))
+
         self.size = 4096 
         self.parent = parent #client or server instance
         self.running = False
@@ -149,23 +162,20 @@ class ConnectionThread(threading.Thread):
 
         while running: 
             data = None
-            data = NetworkFunctions.recv_msg(self.client)
+            data = NetworkFunctions.recv_msg(self.socket)
 
-            Utils.log(self.name, "Received message")
+            Utils.dlog(self.name, "Received message")
 
             if data: 
                 self.parent.handleMessage(data)
             else: 
                 #inform parent the connection was closed remotely
-                self.client.close() 
+                self.socket.close() 
                 running = False
 
-    def connect(self, sockinfo):
-        pass
-
     def send(self, message):
-        self.client.send(message)
+        NetworkFunctions.send_msg(self.socket, message)
 
     def close(self):
         self.running = False
-        self.client.close()
+        self.socket.close()

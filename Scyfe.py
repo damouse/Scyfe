@@ -47,8 +47,10 @@ def runSimulation():
     client = Process(target = runStubbedClient, args = (baseAddr, basePort, "Test Client"))
 
     server.start()
-    sleep(1)
     client.start()
+
+    # server.join()
+    # client.join()
 
     sleep(2)
     server.terminate()

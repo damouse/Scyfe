@@ -63,7 +63,7 @@ class Server:
     ''' Packet Receiving and Processing '''
     # We have received a new packet. Figure out what to do with it.
     def handleMessage(self, message):
-        Utils.log(self.id, "Message Received")
+        Utils.dlog(self.id, "Message Received")
         print message
 
         # Utils.dlog(self.id, "Ponging back a message to the client...")
@@ -71,8 +71,8 @@ class Server:
 
     #handle a newly created connection
     def handleConnection(self, sockInfo):
-        Utils.log(self.id, "Connection Received")
-        self.relay.connect(sockInfo)
+        Utils.dlog(self.id, "Connection Received")
+        self.relay.acceptConnection(sockInfo)
 
 
     ''' Utilities and Bookeeping '''

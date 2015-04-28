@@ -15,9 +15,10 @@ from slander import *
 class Client:
     def __init__(self, label, application):
         self.id = label #random, non-colliding string
-        self.label = label
         self.variables = []
         self.application = application
+
+        self.group = None
 
         #Modules
         self.relay = Relay.Relay(self)
@@ -32,9 +33,10 @@ class Client:
     def connect(self, addr, port):
         Utils.log(self.id, "Started client")
 
-        self.relay.TEST(addr, port)
+        self.relay.connect(addr, port)
 
-        #self.relay.start(addr, port)
+        test = TestMessage.TestMessage(100)
+        self.relay.send(addr, port, test)
 
     #Close the relay, disconnect gracefully, informing all peers and clients of the change
     def disconnect(self):
@@ -71,7 +73,7 @@ class Client:
 
     #handle a newly created connection
     def handleConnection(self, sockInfo):
-        self.relay.connect(sockInfo, self)
+        self.relay.acceptConnection(sockInfo, self)
 
 
     ''' Utilities and Bookeeping '''

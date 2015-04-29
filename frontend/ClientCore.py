@@ -3,6 +3,7 @@ Entry point for client-side module.
 '''
 
 from frontend import Peer as Peer
+from relay import *
 from utils import *
 
 class Client(Peer.Peer):
@@ -13,12 +14,14 @@ class Client(Peer.Peer):
     ''' Lifecycle management '''
     #Start the listener with the given address and port
     def start(self, addr, port, serverAddr, serverPort):
-        Peer.Peer.start(self, addr, port)
+        thread = Peer.Peer.start(self, addr, port)
 
         #relay open, connect to the server and receive starting data
         #TESTING
         self.saddr = serverAddr
         self.sport = serverPort
+
+        return thread
 
     def test(self):
         self.relay.connect(self.saddr, self.sport)

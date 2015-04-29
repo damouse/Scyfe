@@ -15,9 +15,11 @@ class ClientMock:
 
     def start(self, addr, port, serverAddr, serverPort):
         Utils.dlog(self.name, "Client connecting")
-        self.client.start(addr, port, serverAddr, serverPort)
+        thread = self.client.start(addr, port, serverAddr, serverPort)
 
         self.client.test()
+
+        thread.join()
 
     # How this object is represented when logged
     def __repr__(self):

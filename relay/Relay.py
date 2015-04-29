@@ -5,6 +5,13 @@ Establishes connections, sends packets. Arguments for targets are the actual obj
 and not IP addresses-- these should be contained within the targets. 
 
 Note that "target" can refer to a client or a server-- they both have a field that identifies their IP address
+
+See here for a better implementation of the multi-connection architecture using 
+select: http://code.activestate.com/recipes/531824-chat-server-client-using-selectselect/
+
+And P2P chat: http://code.activestate.com/recipes/578591-primitive-peer-to-peer-chat/
+
+Twisted and Kademlia: http://entangled.sourceforge.net/
 '''
 
 from utils import *
@@ -53,12 +60,12 @@ class Relay:
         self.listener.join()
 
     # Opens a connection to a given entity
-    def acceptConnection(self, sockinfo):
-        worker = ConnectionThread(self.parent, sockinfo, None)
+    def acceptConnection(self, socket, addr, port):
+        worker = ConnectionThread(self.parent, socket, addr, port)
         self.workers.append(worker)
 
     def connect(self, addr, port):
-        worker = ConnectionThread(self.parent, (None, addr), port)
+        worker = ConnectionThread(self.parent, None, addr, port)
         self.workers.append(worker)
 
     def disconnect(self, target):
@@ -91,7 +98,7 @@ class RelayListener(threading.Thread):
         self.relay = relay
 
     def run(self):
-        Utils.dlog(self.name, "Listener started")
+        Utils.log(self.name, "Listener binding to " + self.addr + ":" + str(self.port))
 
         try: 
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
@@ -119,7 +126,7 @@ class RelayListener(threading.Thread):
 
 ''' Represents a connection to a remote client or server '''
 class ConnectionThread: 
-    def __init__(self, parent, (client, addr), port): 
+    def __init__(self, parent, client, addr, port): 
         self.name = "WorkerThread"
 
         self.addr = addr 
@@ -128,6 +135,7 @@ class ConnectionThread:
         if client is not None:
             self.socket = client 
         else:
+            Utils.log(self.name, "Attempting to connect to: " + addr + ":" + str(port))
             self.port = port
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.socket.connect((addr, port))

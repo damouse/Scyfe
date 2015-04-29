@@ -36,11 +36,13 @@ class Peer:
     #Start the listener with the given address and port
     def start(self, addr, port):
         Utils.log(self.id, "Started client")
+
         self.running = True
         self.relay.open(addr, port)
 
         self.spinWaitThread = threading.Thread(target = self.mainSpinLoop)
         self.spinWaitThread.start()
+        return self.spinWaitThread
 
     #Close the relay, disconnect gracefully, informing all peers and clients of the change
     def stop(self):
@@ -81,7 +83,9 @@ class Peer:
 
     #handle a newly created connection
     def handleConnection(self, sockInfo):
-        self.relay.acceptConnection(sockInfo, self)
+        sock, portinfo = sockInfo
+        addr, port = portinfo
+        self.relay.acceptConnection(sock, addr, port)
 
 
     ''' Utilities and Bookeeping '''

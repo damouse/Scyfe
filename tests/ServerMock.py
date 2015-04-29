@@ -14,7 +14,9 @@ class ServerMock:
 
     def start(self, ipAddress, port):
         Utils.dlog(self.name, "Starting server")
-        self.server.start(ipAddress, port)
+        thread = self.server.start(ipAddress, port)
+
+        thread.join()
 
     # How this object is represented when logged
     def __repr__(self):

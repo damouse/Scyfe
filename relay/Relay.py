@@ -128,14 +128,12 @@ class RelayListener(threading.Thread):
 class ConnectionThread: 
     def __init__(self, parent, client, addr, port): 
         self.name = "WorkerThread"
-
         self.addr = addr 
 
         #if we are passed a socket then a connection has already been made
         if client is not None:
             self.socket = client 
         else:
-            Utils.log(self.name, "Attempting to connect to: " + addr + ":" + str(port))
             self.port = port
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.socket.connect((addr, port))
@@ -149,14 +147,11 @@ class ConnectionThread:
         self.thread.start()
 
     def listen(self):
-        Utils.log(self.name, "Worker thread started")
         self.running = True 
 
         while self.running: 
             data = None
             data = NetworkFunctions.recv_msg(self.socket)
-
-            Utils.dlog(self.name, "Received message")
 
             if data: 
                 self.parent.handleMessage(data)

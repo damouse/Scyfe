@@ -9,3 +9,11 @@ class TestMessage:
 
     def __repr__(self):
         return "I am a TestMessage packet with " + str(len(self.values)) + " sequential integers"
+
+class LabeledPing: 
+    def __init__(self, name):
+        self.recipient = ""
+        self.sender = name
+
+    def __repr__(self):
+        return "Messag: labeledPing from " + self.sender + " to " + self.recipient

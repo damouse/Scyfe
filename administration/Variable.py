@@ -11,14 +11,12 @@ do this-- have the application handle this itself.
 
 from utils import *
 
-fname = "Variable"
-
 class Variable:
     #Requires a reference to its parent. Directly accesses other modules on the parent
     def __init__(self, parent, name, defaultValue):
         self.parent = parent
         self.name = name
-        self.defaultValue = defaultValue
+        self.value = defaultValue
 
         #should this be considered a proximity variable-- that is, does this variable
         #tell us anything about the proximity of clients?
@@ -26,16 +24,16 @@ class Variable:
 
         self.constraints = []
 
-    #define the permissible set of actions that can be performed on this variable
-    def setConstraints(self):
-        pass
-
-    #change this variable as prescribed by the given delta, subject to constraints
-    #return true/false if valid?
-    def changeVariableDelta(self):
-        pass
-
     # How this object is represented when logged
     def __repr__(self):
         ret =  'This is an unimplemented description.'
         return ret
+
+class Update:
+    def __init__(self, owner, oldVariable, newVariable):
+        self.owner = owner
+        self.name = oldVariable.name
+        self.oldVariable = oldVariable
+        self.newVariable = newVariable
+
+        #Signatures and hashes?

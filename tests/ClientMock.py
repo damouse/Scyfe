@@ -9,9 +9,10 @@ from frontend import *
 
 class ClientMock:
     #Requires a reference to its parent. Directly accesses other modules on the parent
-    def __init__(self, name):
+    def __init__(self, name, numPeers):
         self.name = name + " wrapper"
         self.client = ClientCore.Client(name, self)
+        self.peers = numPeers
 
     def start(self, addr, port, serverAddr, serverPort):
         Utils.dlog(self.name, "Client connecting")
@@ -20,6 +21,16 @@ class ClientMock:
         self.client.test()
 
         thread.join()
+
+    def validateVariable(self, update):
+        if update.name == "coordinate":
+            return True
+
+        if update.name == "currency":
+            return True
+            
+        if update.name == "health":
+            return True
 
     # How this object is represented when logged
     def __repr__(self):

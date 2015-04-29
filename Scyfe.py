@@ -23,7 +23,7 @@ import time
 
 fname = 'Main'
 
-basePort = 7836
+basePort = 7838
 baseAddr = '127.0.0.1'
 
 #major functionality
@@ -44,18 +44,19 @@ def runStubbedServer():
 #testing live local simualtion
 def runSimulation():
     server = Process(target = runStubbedServer)
-    client = Process(target = runStubbedClient, args = (baseAddr, basePort + 1, "Test Client"))
+
+    processes = []
+    num = 3
+
+    for i in range(1, num):
+        processes.append(Process(target = runStubbedClient, args = (baseAddr, basePort + i, "Client " + str(i))))
 
     server.start()
-    sleep(1)
-    client.start()
+    for p in processes: p.start()
 
-    # server.join()
-    # client.join()
-
-    sleep(2)
+    sleep(3)
     server.terminate()
-    client.terminate()
+    for p in processes: p.terminate()
 
 #development tests
 def runLocalTests():

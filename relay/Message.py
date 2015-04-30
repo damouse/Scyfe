@@ -13,3 +13,9 @@ class Message:
     def __repr__(self):
         ret =  'This is an unimplemented description.'
         return ret
+
+class Handshake:
+    def __init__(self, groupId, target, source):
+        self.group = groupId
+        self.target = target
+        self.source = source

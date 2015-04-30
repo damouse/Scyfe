@@ -21,6 +21,8 @@ class Client(Peer.Peer):
         self.saddr = serverAddr
         self.sport = serverPort
 
+        self.relay.connect(self.saddr, self.sport)
+
         return thread
 
     def test(self):
@@ -28,10 +30,3 @@ class Client(Peer.Peer):
 
         test = TestMessage.TestMessage(100)
         self.relay.send(self.saddr, self.sport, test)
-    '''
-    def test(self):
-        self.relay.connect(addr, port)
-
-        test = TestMessage.TestMessage(100)
-        self.relay.send(addr, port, test)
-    '''

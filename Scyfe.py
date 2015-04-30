@@ -1,4 +1,3 @@
-
 '''
 Entry point for Scyfe functionality. 
 
@@ -23,7 +22,7 @@ import time
 
 fname = 'Main'
 
-basePort = 7838
+basePort = 7842
 baseAddr = '127.0.0.1'
 
 #major functionality

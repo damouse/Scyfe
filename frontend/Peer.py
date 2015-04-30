@@ -17,7 +17,6 @@ from slander import *
 class Peer:
     def __init__(self, label, application):
         self.id = label #random, non-colliding string
-        self.variables = []
         self.application = application
 
         self.group = None
@@ -42,6 +41,7 @@ class Peer:
 
         self.spinWaitThread = threading.Thread(target = self.mainSpinLoop)
         self.spinWaitThread.start()
+
         return self.spinWaitThread
 
     #Close the relay, disconnect gracefully, informing all peers and clients of the change
@@ -78,8 +78,17 @@ class Peer:
     ''' Packet Receiving and Processing '''
     # We have received a new packet. Figure out what to do with it.
     def handleMessage(self, message):
-        Utils.log(self.id, "Message Received")
-        print message
+        Utils.dlog(self.id, "Message Received of type: " + str(type(message)))
+
+        if isinstance(message, Administration.VariableAssignment):
+            self.administration.addVariable(message)
+
+        elif isinstance(message, Administration.GroupAssignment):
+            self.administration.setGroup(message)
+
+        else:
+            Utils.log(self.id, "WARN-- received message of type: " + str(message) + ", don't know how to handle!")
+            return None
 
     #handle a newly created connection
     def handleConnection(self, sockInfo):

@@ -9,10 +9,9 @@ from frontend import *
 
 class ClientMock:
     #Requires a reference to its parent. Directly accesses other modules on the parent
-    def __init__(self, name, numPeers):
+    def __init__(self, name):
         self.name = name + " wrapper"
         self.client = ClientCore.Client(name, self)
-        self.peers = numPeers
 
     def start(self, addr, port, serverAddr, serverPort):
         Utils.dlog(self.name, "Client connecting")

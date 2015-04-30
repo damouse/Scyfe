@@ -1,5 +1,7 @@
 '''
 An instance of a peer as seen by a remote connection
+
+If ID is none, the peer has not yet identified itself. 
 '''
 
 class RemotePeer:

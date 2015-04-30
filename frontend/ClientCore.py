@@ -24,6 +24,4 @@ class Client(Peer.Peer):
         return thread
 
     def test(self):
-        pass
-        test = Message.TestMessage(100)
-        self.relay.send(self.peers[0], test)
+        return None

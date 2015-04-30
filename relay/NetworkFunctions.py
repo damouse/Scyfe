@@ -9,20 +9,15 @@ def send_msg(sock, msg):
     msg = pickle.dumps(msg)
     msg = struct.pack('>I', len(msg)) + msg
 
-    Utils.log(fname, "Sending message of length: " + str(len(msg)))
-
     sock.sendall(msg)
 
 def recv_msg(sock):
-    Utils.dlog(fname, "Waiting for message...")
     raw_msglen = recvall(sock, 4)
 
     if not raw_msglen:
         return None
-        Utils.dlog(fname, "Received nothing")
 
     msglen = struct.unpack('>I', raw_msglen)[0]
-    Utils.dlog(fname, "Waiting for a message with " + str(msglen) + " bytes")
 
     contents = recvall(sock, msglen)
     contents = pickle.loads(contents)

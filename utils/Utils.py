@@ -2,7 +2,7 @@
 Utility methods.
 '''
 
-DEBUG_LOG = False
+DEBUG_LOG = True
 import sys
         
 

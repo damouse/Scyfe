@@ -22,7 +22,7 @@ class Administration:
         self.parent = parent 
         self.variables = []
         self.groupId = None
-        self.peers = []
+        self.groupies = []
 
         #area of interest
         self.subscriptions = []
@@ -32,7 +32,7 @@ class Administration:
 
         #remove old connections
         #connect to new peers
-        self.peers = groupUpdateMessage.peers
+        self.groupies = groupUpdateMessage.peers
 
         #remove subscriptions? Likely not.
 
@@ -45,24 +45,5 @@ class Administration:
         self.variables.append(variableMessage.variable)
 
 
-''' Messages '''
-#assignment of a variable from the server
-class VariableAssignment:
-    def __init__(self, variable):
-        self.variable = variable
-        self.key = None #auth key
 
-    def __repr__(self):
-        return "VariableAssignment"
 
-''' 
-Assign the client to a new group. Included is a list of peers in this new group-- if empty then create
-a new empty group (or assign to the server?)
-'''
-class GroupAssignment:
-    def __init__(self, groupId):
-        self.groupId = groupId
-        self.peers = []
-
-    def __repr__(self):
-        return "VariableAssignment"

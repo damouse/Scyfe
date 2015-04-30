@@ -16,7 +16,8 @@ Twisted and Kademlia: http://entangled.sourceforge.net/
 
 from utils import *
 from relay import NetworkFunctions
-from relay import TestMessage
+from relay import Message
+from frontend import RemotePeer
 
 import select 
 import socket 
@@ -40,7 +41,6 @@ class Relay:
     #Open the relay for communication
     def open(self, addr, port):
         self.relayOpen = True
-        Utils.dlog(self.name, "Starting Thread")
         self.listener = RelayListener(self.parent, 1, addr, port, self)
 
         self.listener.start()
@@ -60,20 +60,22 @@ class Relay:
         self.listener.join()
 
     # Opens a connection to a given entity
-    def acceptConnection(self, socket, addr, port):
-        worker = ConnectionThread(self.parent, socket, addr, port)
+    def acceptConnection(self, peer):
+        worker = ConnectionThread(self.parent, peer)
         self.workers.append(worker)
 
-    def connect(self, addr, port):
-        worker = ConnectionThread(self.parent, None, addr, port)
+        worker.send(Message.Handshake(self.parent.administration.groupId, self.parent.id))
+
+    def connect(self, peer):
+        worker = ConnectionThread(self.parent, peer)
         self.workers.append(worker)
 
-    def disconnect(self, target):
+    def disconnect(self, peer):
         pass
 
     # Send a message to a target. Assumes a connection has already been opened with the target. 
-    def send(self, addr, port, message):
-        worker = [x for x in self.workers if x.addr == addr and x.port == port][0]
+    def send(self, peer, message):
+        worker = [x for x in self.workers if x.peer == peer][0]
         worker.send(message)
 
     # How this object is represented when logged
@@ -121,22 +123,28 @@ class RelayListener(threading.Thread):
 
             for s in inputready: 
                 if s == sock: 
-                    self.parent.handleConnection(sock.accept())
+                    sock, portinfo = sock.accept()
+                    addr, port = portinfo
+
+                    peer = RemotePeer.RemotePeer(addr, port)
+                    peer.sock = sock
+                    self.parent.handleConnection(peer)
 
 
 ''' Represents a connection to a remote client or server '''
 class ConnectionThread: 
-    def __init__(self, parent, client, addr, port): 
+    def __init__(self, parent, peer): 
         self.name = "WorkerThread"
-        self.addr = addr 
+        self.addr = peer.addr 
+        self.peer = peer
 
         #if we are passed a socket then a connection has already been made
-        if client is not None:
-            self.socket = client 
+        if peer.sock is not None:
+            self.socket = peer.sock 
         else:
-            self.port = port
+            self.port = peer.port
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.socket.connect((addr, port))
+            self.socket.connect((peer.addr, peer.port))
 
         self.size = 4096 
         self.parent = parent #client or server instance
@@ -154,11 +162,10 @@ class ConnectionThread:
             data = NetworkFunctions.recv_msg(self.socket)
 
             if data: 
-                self.parent.handleMessage(data)
+                self.parent.handleMessage(data, self.peer)
             else: 
-                #inform parent the connection was closed remotely
-                self.socket.close() 
-                self.running = False
+                self.close() 
+                self.parent.connectionLost(self.peer)
 
     def send(self, message):
         NetworkFunctions.send_msg(self.socket, message)

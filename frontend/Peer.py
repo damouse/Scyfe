@@ -19,9 +19,11 @@ class Peer:
         self.id = label #random, non-colliding string
         self.application = application
 
-        self.group = None
         self.running = False
         self.spinWaitThread = None
+
+        #all peers, not just the ones in the group
+        self.peers = []
 
         #Modules
         self.relay = Relay.Relay(self)
@@ -77,25 +79,32 @@ class Peer:
 
     ''' Packet Receiving and Processing '''
     # We have received a new packet. Figure out what to do with it.
-    def handleMessage(self, message):
-        Utils.dlog(self.id, "Message Received of type: " + str(type(message)))
+    def handleMessage(self, message, peer):
+        # Utils.dlog(self.id, "Received type: " + str(message.__class__))
+        Utils.dlog(self.id, "Received [" + str(message.__class__) + "] from [" + str(peer.id) + "]")
 
-        if isinstance(message, Administration.VariableAssignment):
+
+        if isinstance(message, Message.VariableAssignment):
             self.administration.addVariable(message)
 
-        elif isinstance(message, Administration.GroupAssignment):
+        elif isinstance(message, Message.GroupAssignment):
             self.administration.setGroup(message)
+
+        elif isinstance(message, Message.Handshake):
+            if peer.readHandshake(message):
+                self.relay.send(peer, Message.Handshake(self.administration.groupId, self.id))
 
         else:
             Utils.log(self.id, "WARN-- received message of type: " + str(message) + ", don't know how to handle!")
             return None
 
     #handle a newly created connection
-    def handleConnection(self, sockInfo):
-        sock, portinfo = sockInfo
-        addr, port = portinfo
-        self.relay.acceptConnection(sock, addr, port)
+    def handleConnection(self, peer):
+        self.relay.acceptConnection(peer)
+        self.peers.append(peer)
 
+    def connectionLost(self, peer):
+        self.peers.remove(peer)
 
     ''' Utilities and Bookeeping '''
     #Make this client sound off indicating it is alive. 

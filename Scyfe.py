@@ -22,7 +22,7 @@ import time
 
 fname = 'Main'
 
-basePort = 7842
+basePort = 7854
 baseAddr = '127.0.0.1'
 
 #major functionality

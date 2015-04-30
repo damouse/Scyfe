@@ -2,7 +2,8 @@
 Entry point for client-side module. 
 '''
 
-from frontend import Peer as Peer
+from frontend import Peer
+from frontend import RemotePeer
 from relay import *
 from utils import *
 
@@ -16,17 +17,13 @@ class Client(Peer.Peer):
     def start(self, addr, port, serverAddr, serverPort):
         thread = Peer.Peer.start(self, addr, port)
 
-        #relay open, connect to the server and receive starting data
-        #TESTING
-        self.saddr = serverAddr
-        self.sport = serverPort
-
-        self.relay.connect(self.saddr, self.sport)
+        server = RemotePeer.RemotePeer(serverAddr, serverPort)
+        self.peers.append(server)
+        self.relay.connect(server)
 
         return thread
 
     def test(self):
-        self.relay.connect(self.saddr, self.sport)
-
-        test = TestMessage.TestMessage(100)
-        self.relay.send(self.saddr, self.sport, test)
+        pass
+        test = Message.TestMessage(100)
+        self.relay.send(self.peers[0], test)

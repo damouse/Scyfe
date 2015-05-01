@@ -16,6 +16,7 @@ import os
 
 from tests import *
 from utils import Utils
+from simulations import Sims
 
 from time import sleep
 import time
@@ -57,6 +58,9 @@ def runSimulation():
     server.terminate()
     for p in processes: p.terminate()
 
+def runActualSimulations():
+    Sims.traditional()
+
 #development tests
 def runLocalTests():
     Utils.log(fname, 'Starting tests')
@@ -65,7 +69,9 @@ def runLocalTests():
 
 if __name__ == "__main__":
     # runLocalTests()
-    runSimulation()
+    #runSimulation()
+
+    runActualSimulations()
 
     #runAsClient()
     #runAsServer()

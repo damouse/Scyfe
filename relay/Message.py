@@ -26,6 +26,12 @@ class GroupAssignment:
     def __repr__(self):
         return "VariableAssignment"
 
+# A peer just joined a group. Give them a record of our variables
+class GroupHandshake:
+    def __init__(self, variables, peerId):
+        self.id = peerId
+        self.variables = variables
+
 # A dummy message used to test message handoffs
 class TestMessage:
     def __init__(self, num):

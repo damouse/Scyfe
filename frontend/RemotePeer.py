@@ -26,6 +26,16 @@ class RemotePeer:
 
         return ret
 
+    #as above, read and apply the handshake information. Returns true if this is new infromation
+    #( and this a first-time handshake) and false otherwise
+    def readGroupHandshake(self, handshake):
+        ret = False
+        if len(self.variables) == 0: ret = True
+
+        self.variables = handshake.variables
+
+        return ret
+
     def __eq__(self, other):
         if not isinstance(other, RemotePeer): return False
         return self.sock == other.sock and self.port == other.port

@@ -25,3 +25,13 @@ class Client(Peer.Peer):
 
     def test(self):
         return None
+
+    ''' Application Interface '''
+    #Given the variable (by name?) and an update to the variable, begin the validation process
+    def inputValueServer(self, variable, update):
+        pass
+
+    #A variable changed. It could be on us or on another client. The application needs to be notified for the purpose of 
+    #rendering
+    def inputChanged(self, client, variable):
+        Utils.dlog(self.id, "Alerting application of a validated variable change on client: " + client + " variable: " + variable)

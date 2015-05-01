@@ -83,12 +83,14 @@ class Peer:
         # Utils.dlog(self.id, "Received type: " + str(message.__class__))
         Utils.dlog(self.id, "Received [" + str(message.__class__) + "] from [" + str(peer.id) + "]")
 
-
         if isinstance(message, Message.VariableAssignment):
             self.administration.addVariable(message)
 
         elif isinstance(message, Message.GroupAssignment):
             self.administration.setGroup(message)
+
+        elif isinstance(message, Message.GroupHandshake):
+            self.administration.acceptGroupHandshake(message, peer)
 
         elif isinstance(message, Message.Handshake):
             if peer.readHandshake(message):

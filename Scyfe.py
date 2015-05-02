@@ -59,8 +59,7 @@ def runSimulation():
     for p in processes: p.terminate()
 
 def runActualSimulations():
-    # Sims.traditional()
-    Sims.test()
+    Sims.traditional()
 
 #development tests
 def runLocalTests():

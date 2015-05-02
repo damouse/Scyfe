@@ -20,10 +20,19 @@ class Peer:
     def __eq__(self, other):
         return self.name == other.name
 
+    def __repr__(self):
+        return self.name 
+
+    def write(self):
+        return self.name + ":\n\t" + str(self.throughput) 
+
 class Group:
     def __init__(self, label):
         self.peers = []
         self.name = label
+
+    def __repr__(self):
+        return self.name + " " + str(self.peers)
 
 class Link:
     def __init__(self, latency, start, end):
@@ -36,6 +45,12 @@ class Link:
 
     def __eq__(self, other):
         return self.start == other.start and self.end == other.end
+
+    def __repr__(self):
+        return "[" + self.start.name + "]-[" + self.end.name + "] (" + str(self.latency) + "ms)" 
+
+    def write(self):
+        return self.__repr__() + "\n\t" + str(self.throughput) 
 
 #represents an operation that runs a duration
 class Task:
@@ -51,11 +66,19 @@ class Task:
         self.route = None
         self.position = source
 
-        self.route = routing(self.source, self.target)
+        self.route = self.routing(self.source, self.target)
+
+    def __repr__(self):
+        ret = self.varname + " " + str(self.size) + "bytes time: " + str(self.time) + "ms \n\t"
+        route = ""
+
+        for item in route: route += str(item) + " - "
+        ret += route
+        return ret 
 
     # find a route by BFSing the links and nodes, return the path
     # assumes a path exists!
-    def routing(current, target, seenNodes = []):
+    def routing(self, current, target, seenNodes = []):
         for link in current.links:
             seenLinks = []
             nextPeer = link.start if link.start == current else link.end
@@ -84,7 +107,7 @@ class Task:
         self.currentTimeDown -= advance
         self.time += advance
 
-        if currentTimeDown == 0:
+        if self.currentTimeDown == 0:
             self.position = self.route[0]
             self.route.pop(0)
 
@@ -123,7 +146,7 @@ def run(peers, links, groups, duration):
             peer.throughput.append(0)
 
             for var in peer.variables:
-                task = roll(peer, var)
+                task = roll(peer, peers, var)
 
                 if task is not None:
                     liveTasks.append(task)
@@ -136,7 +159,7 @@ def run(peers, links, groups, duration):
                 liveTasks.remove(task)
                 deadTasks.append(task)
 
-    return tadeadTaskssks
+    return deadTasks
 
 def roll(peer, peers, variable):
     roll = random.randrange(0, 1000, 1)
@@ -145,12 +168,14 @@ def roll(peer, peers, variable):
     while target == peer: target = random.choice(peers)
 
     if roll < variable.freq * 100:
-        return Task(variable.name, peer, target)
+        return Task(variable, peer, target)
 
     return None
 
 def log(peers, links, groups, tasks):
     clearDir()
+
+    writeSummary("traditional-summary", peers, links, groups, tasks)
 
 
 ''' File Utils '''
@@ -174,19 +199,32 @@ def makeFile(name):
 
     return open(pathname, "w") 
 
-def writeCase(outFile, contents):
-    # see here for CSV printing fun
-    #http://stackoverflow.com/questions/18952716/valueerror-i-o-operation-on-closed-file
-    outFile.write(contents)
+# see here for CSV printing fun
+#http://stackoverflow.com/questions/18952716/valueerror-i-o-operation-on-closed-file
+def writeSummary(name, peers, links, groups, tasks):
+    outFile = makeFile(name)
+
+    outFile.write("--Peers--\n")
+    for peer in peers: outFile.write(peer.write() + '\n')
+
+    outFile.write("\n--Links--\n")
+    for link in links: outFile.write(link.write() + '\n')
+
+    outFile.write("\n--Groups--\n")
+    for group in groups: outFile.write(group+ '\n')
+
+    outFile.write("\n--Tasks--\n")
+    for task in tasks: outFile.write(task + '\n')
+
     outFile.close()
 
 
 ''' Tests '''
 def traditional():
-    Utils.log(name, "Starting Client-Server Tests")
+    Utils.log(name, "Starting Client-Server Tests...")
 
     peers, links, groups, tasks = [], [], [], []
-    sever = Peer("Server")
+    server = Peer("Server")
 
     for i in range(0, 3): 
         peer = Peer("Peer " + str(i))
@@ -194,8 +232,10 @@ def traditional():
         links.append(Link(200, peer, server))
         peers.append(peer)
 
-    tasks = run(peers, links, groups)
+    tasks = run(peers, links, groups, 6000)
     log(peers, links, groups, tasks)
+
+    Utils.log(name, "done")
 
 
 ''' Random Testing '''

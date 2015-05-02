@@ -59,7 +59,8 @@ def runSimulation():
     for p in processes: p.terminate()
 
 def runActualSimulations():
-    Sims.traditional()
+    duration = 10000
+    Sims.traditional(duration)
 
 #development tests
 def runLocalTests():

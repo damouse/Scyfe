@@ -8,6 +8,8 @@ import os
 
 name = "Simulations"
 
+hfreq, mfrq, pfreq = 0, 0, 0
+
 class Peer:
     def __init__(self, label):
         self.name = label
@@ -95,7 +97,7 @@ class Task:
             #not a seen node, not the target, call recursively. If the call returns None
             # then nothing was found
             nextPath = routing(nextPeer, target, seenNodes)
-            if nextPath is not None: return path.extend(nextPath)
+            if nextPath != None: return path.extend(nextPath)
 
         #fell through the whole list, no more peers, return nothing
         return None
@@ -148,7 +150,7 @@ def run(peers, links, groups, duration):
             for var in peer.variables:
                 task = roll(peer, peers, var)
 
-                if task is not None:
+                if task != None:
                     liveTasks.append(task)
 
         #tick existing tasks
@@ -159,7 +161,7 @@ def run(peers, links, groups, duration):
                 liveTasks.remove(task)
                 deadTasks.append(task)
 
-    return deadTasks
+    return liveTasks
 
 def roll(peer, peers, variable):
     roll = random.randrange(0, 1000, 1)
@@ -172,10 +174,10 @@ def roll(peer, peers, variable):
 
     return None
 
-def log(peers, links, groups, tasks):
+def log(peers, links, groups, tasks, duration):
     clearDir()
 
-    writeSummary("traditional-summary", peers, links, groups, tasks)
+    writeSummary("traditional-summary", peers, links, groups, tasks, duration)
 
 
 ''' File Utils '''
@@ -201,8 +203,9 @@ def makeFile(name):
 
 # see here for CSV printing fun
 #http://stackoverflow.com/questions/18952716/valueerror-i-o-operation-on-closed-file
-def writeSummary(name, peers, links, groups, tasks):
+def writeSummary(name, peers, links, groups, tasks, duration):
     outFile = makeFile(name)
+    outFile.write(str(duration / 1000) + " second run\n")
 
     outFile.write("--Peers--\n")
     for peer in peers: outFile.write(peer.write() + '\n')
@@ -211,18 +214,17 @@ def writeSummary(name, peers, links, groups, tasks):
     for link in links: outFile.write(link.write() + '\n')
 
     outFile.write("\n--Groups--\n")
-    for group in groups: outFile.write(group+ '\n')
+    for group in groups: outFile.write(group + '\n')
 
     outFile.write("\n--Tasks--\n")
-    for task in tasks: outFile.write(task + '\n')
+    for task in tasks: outFile.write(str(task) + '\n')
 
     outFile.close()
 
 
 ''' Tests '''
-def traditional():
+def traditional(duration):
     Utils.log(name, "Starting Client-Server Tests...")
-
     peers, links, groups, tasks = [], [], [], []
     server = Peer("Server")
 
@@ -232,8 +234,8 @@ def traditional():
         links.append(Link(200, peer, server))
         peers.append(peer)
 
-    tasks = run(peers, links, groups, 6000)
-    log(peers, links, groups, tasks)
+    tasks = run(peers, links, groups, duration)
+    log(peers, links, groups, tasks, duration)
 
     Utils.log(name, "done")
 

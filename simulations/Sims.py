@@ -68,7 +68,8 @@ class Task:
         self.route = None
         self.position = source
 
-        self.route = self.routing(self.source, self.target)
+        #self.route = self.routing(self.source, self.target)
+        self.route = self.dfsRouting(self.source, self.target)
 
     def __repr__(self):
         ret = self.varname + " " + str(self.size) + "bytes time: " + str(self.time) + "ms \n\t"
@@ -83,7 +84,7 @@ class Task:
     def routing(self, current, target, seenNodes = []):
         for link in current.links:
             seenLinks = []
-            nextPeer = link.start if link.start == current else link.end
+            nextPeer = link.end if link.start == current else link.end
 
             #ignore nodes already seen
             if nextPeer in seenNodes: continue
@@ -101,6 +102,28 @@ class Task:
 
         #fell through the whole list, no more peers, return nothing
         return None
+
+    # find a route by BFSing the links and nodes, return the path
+    # assumes a path exists!
+    def dfsRouting(self, current, target):
+        visited, queue = set(), [target]
+
+        while queue:
+            vertex = queue.pop(0)
+
+            if vertex not in visited:
+                visited.add(vertex)
+
+                #get the children
+                children = []
+                for link in vertex.links:
+                    nextPeer = link.end if link.start == current else link.end
+                    if nextPeer not in visited: children.append(nextPeer)
+
+                #add the child nodes (removing any visited ones)
+                queue.extend(children)
+
+        return visited
 
     #move forward by the given amount of time. Return true if the task is finished
     def advance(self, advance):
@@ -242,9 +265,17 @@ def traditional(duration):
 
 ''' Random Testing '''
 def test():
-    clearDir()
-    outFile = makeFile("test")
-    writeCase(outFile, "Hey guisee!")
+    peers, links, groups, tasks = [], [], [], []
+    server = Peer("Server")
+
+    for i in range(0, 3): 
+        peer = Peer("Peer " + str(i))
+        peer.variables = buildVariables()
+        links.append(Link(200, peer, server))
+        peers.append(peer)
+
+    t = Task(variable, peers[0], peers[-1])
+    print str(t.route)
     
 
 

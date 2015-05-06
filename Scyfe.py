@@ -60,7 +60,8 @@ def runSimulation():
 
 def runActualSimulations():
     duration = 10000
-    Sims.traditional(duration)
+    # Sims.traditional(duration)
+    Sims.test()
 
 #development tests
 def runLocalTests():

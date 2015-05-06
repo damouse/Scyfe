@@ -17,16 +17,17 @@ class Peer:
 
         #each element is throughput in that 50ms tick
         self.throughput = []
-        self.links = []
+        self.next = []
 
     def __eq__(self, other):
+        if not isinstance(other, Peer): return False
         return self.name == other.name
 
     def __repr__(self):
         return self.name 
 
     def write(self):
-        return self.name + ":\n\t" + str(self.throughput) 
+        return self.name + "\n\tLinks: " + str(self.next) + "\n\tThroughput Signals: " + str(self.throughput) 
 
 class Group:
     def __init__(self, label):
@@ -38,18 +39,22 @@ class Group:
 
 class Link:
     def __init__(self, latency, start, end):
-        self.start = start
-        self.end = end
+        self.next = [start, end]
+        self.name = "[" + self.next[0].name + "]-[" + self.next[1].name + "]"
         self.latency = latency
+
+        start.next.append(self)
+        end.next.append(self)
 
         #each element is throughput in that 50ms tick
         self.throughput = []
 
     def __eq__(self, other):
-        return self.start == other.start and self.end == other.end
+        if not isinstance(other, Link): return False
+        return self.name == other.name
 
     def __repr__(self):
-        return "[" + self.start.name + "]-[" + self.end.name + "] (" + str(self.latency) + "ms)" 
+        return self.name + " (" + str(self.latency) + "ms)" 
 
     def write(self):
         return self.__repr__() + "\n\t" + str(self.throughput) 
@@ -68,8 +73,8 @@ class Task:
         self.route = None
         self.position = source
 
-        #self.route = self.routing(self.source, self.target)
-        self.route = self.dfsRouting(self.source, self.target)
+        self.route = self.find_shortest_path(self.source, self.target)
+        #self.route = self.routing()
 
     def __repr__(self):
         ret = self.varname + " " + str(self.size) + "bytes time: " + str(self.time) + "ms \n\t"
@@ -81,38 +86,14 @@ class Task:
 
     # find a route by BFSing the links and nodes, return the path
     # assumes a path exists!
-    def routing(self, current, target, seenNodes = []):
-        for link in current.links:
-            seenLinks = []
-            nextPeer = link.end if link.start == current else link.end
-
-            #ignore nodes already seen
-            if nextPeer in seenNodes: continue
-            seenNodes.append(nextPeer)
-
-            path = [link, nextPeer]
-
-            #found the target node
-            if nextPeer == target: return path
-
-            #not a seen node, not the target, call recursively. If the call returns None
-            # then nothing was found
-            nextPath = routing(nextPeer, target, seenNodes)
-            if nextPath != None: return path.extend(nextPath)
-
-        #fell through the whole list, no more peers, return nothing
-        return None
-
-    # find a route by BFSing the links and nodes, return the path
-    # assumes a path exists!
-    def dfsRouting(self, current, target):
-        visited, queue = set(), [target]
+    def routing(self):
+        visited, queue = [], [self.source]
 
         while queue:
             vertex = queue.pop(0)
 
             if vertex not in visited:
-                visited.add(vertex)
+                visited.append(vertex)
 
                 #get the children
                 children = []
@@ -124,6 +105,24 @@ class Task:
                 queue.extend(children)
 
         return visited
+
+    def find_shortest_path(self, start, end, oldPath=[]):
+        #required to avoid references to the list
+        path = list(oldPath)
+        path.extend([start])
+        if start == end:
+            return path
+
+        shortest = None
+
+        for child in start.next:
+            if child not in path:
+                newpath = self.find_shortest_path(child, end, path)
+
+                if newpath:
+                    if not shortest or len(newpath) < len(shortest):
+                        shortest = newpath
+        return shortest
 
     #move forward by the given amount of time. Return true if the task is finished
     def advance(self, advance):
@@ -274,8 +273,21 @@ def test():
         links.append(Link(200, peer, server))
         peers.append(peer)
 
-    t = Task(variable, peers[0], peers[-1])
-    print str(t.route)
+    var = Variable("TestRoute", 1)
+    t = Task(var, peers[0], peers[-1])
+
+    print "Moving from " + peers[0].name + " to " + peers[-1].name
+
+    print "Links"
+    for link in links:
+        print '\t' + str(link)
+
+    print '\nPeers'
+    for peer in peers:
+        print '\t' + peer.write()
+
+    print '\nRoute'
+    print '\t' + str(t.route)
     
 
 

@@ -24,51 +24,33 @@ position 1000bytes time: 10000ms
 	
 position 1000bytes time: 9900ms 
 	
-position 1000bytes time: 9900ms 
-	
-position 1000bytes time: 9800ms 
-	
-health 1000bytes time: 9800ms 
-	
-position 1000bytes time: 9800ms 
-	
-position 1000bytes time: 9700ms 
-	
-position 1000bytes time: 9700ms 
+health 1000bytes time: 9700ms 
 	
 position 1000bytes time: 9600ms 
 	
-health 1000bytes time: 9600ms 
+position 1000bytes time: 9600ms 
 	
 position 1000bytes time: 9500ms 
 	
-health 1000bytes time: 9500ms 
+position 1000bytes time: 9500ms 
 	
 position 1000bytes time: 9500ms 
 	
 position 1000bytes time: 9400ms 
-	
-position 1000bytes time: 9400ms 
-	
-health 1000bytes time: 9300ms 
-	
-position 1000bytes time: 9300ms 
 	
 position 1000bytes time: 9300ms 
 	
 position 1000bytes time: 9200ms 
 	
+position 1000bytes time: 9100ms 
+	
+position 1000bytes time: 9100ms 
+	
+position 1000bytes time: 9000ms 
+	
 position 1000bytes time: 9000ms 
 	
 health 1000bytes time: 8900ms 
-	
-position 1000bytes time: 8900ms 
-	
-position 1000bytes time: 8800ms 
-	
-money 1000bytes time: 8800ms 
-	
-position 1000bytes time: 8800ms 
 	
 position 1000bytes time: 8800ms 
 	
@@ -78,11 +60,7 @@ position 1000bytes time: 8700ms
 	
 position 1000bytes time: 8600ms 
 	
-money 1000bytes time: 8600ms 
-	
 position 1000bytes time: 8500ms 
-	
-position 1000bytes time: 8400ms 
 	
 position 1000bytes time: 8400ms 
 	
@@ -94,13 +72,13 @@ position 1000bytes time: 8300ms
 	
 position 1000bytes time: 8200ms 
 	
-health 1000bytes time: 8100ms 
+position 1000bytes time: 8100ms 
 	
-health 1000bytes time: 8000ms 
+position 1000bytes time: 8100ms 
 	
 position 1000bytes time: 8000ms 
 	
-position 1000bytes time: 7900ms 
+position 1000bytes time: 8000ms 
 	
 position 1000bytes time: 7900ms 
 	
@@ -112,11 +90,21 @@ position 1000bytes time: 7700ms
 	
 position 1000bytes time: 7700ms 
 	
+position 1000bytes time: 7600ms 
+	
+position 1000bytes time: 7600ms 
+	
+position 1000bytes time: 7600ms 
+	
+position 1000bytes time: 7500ms 
+	
 position 1000bytes time: 7500ms 
 	
 position 1000bytes time: 7500ms 
 	
-health 1000bytes time: 7400ms 
+position 1000bytes time: 7400ms 
+	
+position 1000bytes time: 7400ms 
 	
 position 1000bytes time: 7300ms 
 	
@@ -124,13 +112,17 @@ position 1000bytes time: 7300ms
 	
 position 1000bytes time: 7200ms 
 	
-position 1000bytes time: 7100ms 
+position 1000bytes time: 7200ms 
+	
+health 1000bytes time: 7000ms 
 	
 position 1000bytes time: 7000ms 
 	
-position 1000bytes time: 7000ms 
+position 1000bytes time: 6900ms 
 	
-health 1000bytes time: 6900ms 
+health 1000bytes time: 6800ms 
+	
+position 1000bytes time: 6800ms 
 	
 position 1000bytes time: 6700ms 
 	
@@ -140,15 +132,11 @@ position 1000bytes time: 6600ms
 	
 position 1000bytes time: 6500ms 
 	
-health 1000bytes time: 6500ms 
-	
 position 1000bytes time: 6500ms 
 	
 position 1000bytes time: 6500ms 
 	
 health 1000bytes time: 6400ms 
-	
-position 1000bytes time: 6400ms 
 	
 position 1000bytes time: 6300ms 
 	
@@ -156,7 +144,7 @@ position 1000bytes time: 6300ms
 	
 position 1000bytes time: 6200ms 
 	
-position 1000bytes time: 6100ms 
+position 1000bytes time: 6200ms 
 	
 position 1000bytes time: 6100ms 
 	
@@ -166,35 +154,33 @@ position 1000bytes time: 6000ms
 	
 position 1000bytes time: 6000ms 
 	
-position 1000bytes time: 6000ms 
-	
-health 1000bytes time: 5900ms 
+position 1000bytes time: 5900ms 
 	
 position 1000bytes time: 5900ms 
 	
+position 1000bytes time: 5900ms 
+	
+health 1000bytes time: 5800ms 
+	
+position 1000bytes time: 5800ms 
+	
 position 1000bytes time: 5800ms 
 	
 position 1000bytes time: 5800ms 
 	
-position 1000bytes time: 5700ms 
+position 1000bytes time: 5600ms 
 	
-position 1000bytes time: 5700ms 
-	
-position 1000bytes time: 5700ms 
+health 1000bytes time: 5500ms 
 	
 position 1000bytes time: 5500ms 
 	
-position 1000bytes time: 5500ms 
+health 1000bytes time: 5500ms 
 	
 position 1000bytes time: 5400ms 
 	
-position 1000bytes time: 5400ms 
+health 1000bytes time: 5300ms 
 	
-position 1000bytes time: 5300ms 
-	
-position 1000bytes time: 5300ms 
-	
-health 1000bytes time: 5200ms 
+position 1000bytes time: 5200ms 
 	
 position 1000bytes time: 5200ms 
 	
@@ -202,19 +188,11 @@ position 1000bytes time: 5100ms
 	
 position 1000bytes time: 5100ms 
 	
-position 1000bytes time: 5000ms 
+health 1000bytes time: 4900ms 
 	
-position 1000bytes time: 5000ms 
+health 1000bytes time: 4800ms 
 	
-position 1000bytes time: 5000ms 
-	
-position 1000bytes time: 4900ms 
-	
-position 1000bytes time: 4900ms 
-	
-position 1000bytes time: 4700ms 
-	
-position 1000bytes time: 4700ms 
+position 1000bytes time: 4800ms 
 	
 position 1000bytes time: 4700ms 
 	
@@ -222,11 +200,15 @@ position 1000bytes time: 4600ms
 	
 position 1000bytes time: 4600ms 
 	
-health 1000bytes time: 4500ms 
+health 1000bytes time: 4600ms 
 	
 position 1000bytes time: 4500ms 
 	
-health 1000bytes time: 4400ms 
+position 1000bytes time: 4500ms 
+	
+position 1000bytes time: 4400ms 
+	
+position 1000bytes time: 4400ms 
 	
 position 1000bytes time: 4300ms 
 	
@@ -234,15 +216,21 @@ position 1000bytes time: 4300ms
 	
 position 1000bytes time: 4200ms 
 	
+position 1000bytes time: 4200ms 
+	
+health 1000bytes time: 4200ms 
+	
+health 1000bytes time: 4100ms 
+	
 position 1000bytes time: 4100ms 
 	
 position 1000bytes time: 4000ms 
 	
-money 1000bytes time: 4000ms 
+position 1000bytes time: 3900ms 
 	
 position 1000bytes time: 3900ms 
 	
-position 1000bytes time: 3800ms 
+position 1000bytes time: 3900ms 
 	
 position 1000bytes time: 3800ms 
 	
@@ -252,7 +240,13 @@ position 1000bytes time: 3700ms
 	
 position 1000bytes time: 3600ms 
 	
-money 1000bytes time: 3400ms 
+position 1000bytes time: 3500ms 
+	
+position 1000bytes time: 3500ms 
+	
+health 1000bytes time: 3400ms 
+	
+position 1000bytes time: 3400ms 
 	
 position 1000bytes time: 3400ms 
 	
@@ -260,25 +254,31 @@ position 1000bytes time: 3300ms
 	
 position 1000bytes time: 3300ms 
 	
+money 1000bytes time: 3300ms 
+	
+position 1000bytes time: 3200ms 
+	
 position 1000bytes time: 3200ms 
 	
 health 1000bytes time: 3200ms 
+	
+position 1000bytes time: 3200ms 
 	
 position 1000bytes time: 3100ms 
 	
 position 1000bytes time: 3000ms 
 	
-position 1000bytes time: 2900ms 
+position 1000bytes time: 3000ms 
 	
 position 1000bytes time: 2900ms 
+	
+health 1000bytes time: 2900ms 
 	
 position 1000bytes time: 2900ms 
 	
 position 1000bytes time: 2800ms 
 	
-position 1000bytes time: 2800ms 
-	
-position 1000bytes time: 2700ms 
+health 1000bytes time: 2700ms 
 	
 position 1000bytes time: 2700ms 
 	
@@ -290,25 +290,19 @@ position 1000bytes time: 2600ms
 	
 position 1000bytes time: 2500ms 
 	
-health 1000bytes time: 2400ms 
-	
 position 1000bytes time: 2400ms 
+	
+health 1000bytes time: 2400ms 
 	
 position 1000bytes time: 2300ms 
 	
 position 1000bytes time: 2200ms 
 	
-position 1000bytes time: 2100ms 
+health 1000bytes time: 2200ms 
 	
 position 1000bytes time: 2100ms 
 	
-position 1000bytes time: 2000ms 
-	
-health 1000bytes time: 2000ms 
-	
-position 1000bytes time: 2000ms 
-	
-position 1000bytes time: 1800ms 
+position 1000bytes time: 1900ms 
 	
 position 1000bytes time: 1800ms 
 	
@@ -320,21 +314,11 @@ position 1000bytes time: 1700ms
 	
 position 1000bytes time: 1600ms 
 	
-position 1000bytes time: 1600ms 
-	
-money 1000bytes time: 1600ms 
-	
-position 1000bytes time: 1600ms 
+position 1000bytes time: 1500ms 
 	
 position 1000bytes time: 1500ms 
 	
-health 1000bytes time: 1500ms 
-	
-health 1000bytes time: 1500ms 
-	
 position 1000bytes time: 1500ms 
-	
-position 1000bytes time: 1400ms 
 	
 position 1000bytes time: 1400ms 
 	
@@ -342,25 +326,31 @@ position 1000bytes time: 1400ms
 	
 position 1000bytes time: 1300ms 
 	
-money 1000bytes time: 1200ms 
+position 1000bytes time: 1200ms 
 	
 position 1000bytes time: 1200ms 
 	
+position 1000bytes time: 1100ms 
+	
+position 1000bytes time: 1100ms 
+	
 position 1000bytes time: 1000ms 
 	
-health 1000bytes time: 1000ms 
-	
-position 1000bytes time: 1000ms 
+health 1000bytes time: 900ms 
 	
 position 1000bytes time: 900ms 
 	
-health 1000bytes time: 800ms 
+health 1000bytes time: 900ms 
+	
+position 1000bytes time: 900ms 
 	
 position 1000bytes time: 800ms 
 	
-health 1000bytes time: 800ms 
-	
 position 1000bytes time: 800ms 
+	
+money 1000bytes time: 800ms 
+	
+health 1000bytes time: 800ms 
 	
 position 1000bytes time: 700ms 
 	
@@ -368,27 +358,17 @@ position 1000bytes time: 700ms
 	
 position 1000bytes time: 600ms 
 	
-health 1000bytes time: 600ms 
-	
-position 1000bytes time: 600ms 
-	
-health 1000bytes time: 500ms 
+position 1000bytes time: 500ms 
 	
 position 1000bytes time: 400ms 
 	
 position 1000bytes time: 400ms 
 	
-position 1000bytes time: 300ms 
-	
-money 1000bytes time: 300ms 
+health 1000bytes time: 300ms 
 	
 position 1000bytes time: 300ms 
 	
 position 1000bytes time: 200ms 
 	
-health 1000bytes time: 200ms 
-	
 position 1000bytes time: 200ms 
-	
-position 1000bytes time: 100ms 
 	

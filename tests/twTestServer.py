@@ -1,22 +1,22 @@
-from twisted.internet.protocol import Protocol, Factory
-from twisted.internet import reactor
+# from twisted.internet.protocol import Protocol, Factory
+# from twisted.internet import reactor
 
-### Protocol Implementation
+# ### Protocol Implementation
 
-# This is just about the simplest possible protocol
-class Echo(Protocol):
-    def dataReceived(self, data):
-        """
-        As soon as any data is received, write it back.
-        """
-        self.transport.write(data)
+# # This is just about the simplest possible protocol
+# class Echo(Protocol):
+#     def dataReceived(self, data):
+#         """
+#         As soon as any data is received, write it back.
+#         """
+#         self.transport.write(data)
 
 
-def main():
-    f = Factory()
-    f.protocol = Echo
-    reactor.listenTCP(8000, f)
-    reactor.run()
+# def main():
+#     f = Factory()
+#     f.protocol = Echo
+#     reactor.listenTCP(8000, f)
+#     reactor.run()
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

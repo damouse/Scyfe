@@ -2,361 +2,377 @@
 --Peers--
 Server
 	Links: [[Peer 0]-[Server] (200ms), [Peer 1]-[Server] (200ms), [Peer 2]-[Server] (200ms)]
-	Throughput Signals: [0, 0, 1000, 2000, 2000, 3000, 1000, 0, 0, 3000, 3000, 2000, 0, 3000, 3000, 2000, 3000, 2000, 2000, 1000, 0, 3000, 3000, 0, 1000, 2000, 3000, 2000, 1000, 3000, 1000, 2000, 1000, 4000, 2000, 2000, 4000, 0, 2000, 1000, 4000, 2000, 1000, 3000, 3000, 3000, 1000, 2000, 0, 3000, 2000, 2000, 1000, 3000, 2000, 2000, 3000, 1000, 2000, 1000, 0, 0, 2000, 1000, 1000, 2000, 3000, 2000, 1000, 1000, 1000, 2000, 1000, 3000, 3000, 2000, 2000, 1000, 2000, 0, 4000, 1000, 1000, 1000, 1000, 3000, 1000, 2000, 0, 3000, 2000, 0, 2000, 1000, 1000, 2000, 1000, 4000, 1000, 1000]
+	Throughput Signals: [0, 0, 3000, 1000, 3000, 1000, 1000, 2000, 3000, 0, 2000, 2000, 3000, 1000, 3000, 4000, 2000, 0, 1000, 1000, 2000, 4000, 1000, 2000, 2000, 3000, 2000, 1000, 2000, 3000, 1000, 3000, 2000, 1000, 2000, 0, 0, 0, 1000, 2000, 2000, 2000, 3000, 1000, 1000, 2000, 4000, 0, 3000, 1000, 2000, 2000, 5000, 2000, 3000, 2000, 0, 2000, 1000, 3000, 2000, 1000, 2000, 0, 2000, 4000, 1000, 2000, 2000, 3000, 2000, 1000, 2000, 3000, 2000, 1000, 2000, 1000, 2000, 2000, 2000, 2000, 3000, 1000, 0, 1000, 3000, 2000, 2000, 1000, 4000, 1000, 3000, 1000, 1000, 1000, 4000, 2000, 3000, 2000]
 Peer 0
 	Links: [[Peer 0]-[Server] (200ms)]
-	Throughput Signals: [0, 1000, 0, 1000, 1000, 0, 0, 1000, 2000, 1000, 0, 3000, 2000, 1000, 1000, 2000, 3000, 0, 1000, 1000, 1000, 0, 1000, 2000, 3000, 1000, 0, 1000, 0, 0, 1000, 0, 2000, 1000, 1000, 1000, 2000, 1000, 1000, 1000, 1000, 0, 1000, 1000, 1000, 2000, 1000, 3000, 2000, 2000, 2000, 1000, 1000, 1000, 2000, 1000, 1000, 0, 0, 0, 1000, 0, 0, 0, 0, 1000, 1000, 1000, 1000, 1000, 0, 2000, 1000, 0, 1000, 0, 1000, 0, 2000, 3000, 0, 3000, 1000, 1000, 1000, 1000, 1000, 2000, 1000, 1000, 0, 2000, 1000, 0, 0, 2000, 1000, 1000, 1000, 2000]
+	Throughput Signals: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 0, 0, 1000, 1000, 1000, 1000, 1000, 1000, 0, 1000, 0, 3000, 1000, 0, 0, 0, 1000, 1000, 2000, 3000, 1000, 1000, 2000, 1000, 0, 2000, 0, 0, 0, 0, 1000, 1000, 0, 1000, 1000, 0, 1000, 2000, 0, 2000, 0, 2000, 1000, 1000, 0, 1000, 2000, 0, 2000, 2000, 1000, 1000, 1000, 1000, 2000, 1000, 1000, 1000, 1000, 3000, 2000, 0, 2000, 1000, 1000, 1000, 1000, 1000, 0, 1000, 0, 1000, 1000, 1000, 0, 1000, 1000, 3000, 1000, 1000, 2000, 1000, 3000, 2000, 1000, 1000, 0, 2000, 1000, 0, 1000, 0, 1000]
 Peer 1
 	Links: [[Peer 1]-[Server] (200ms)]
-	Throughput Signals: [0, 0, 1000, 2000, 0, 1000, 1000, 1000, 1000, 1000, 0, 1000, 2000, 2000, 1000, 2000, 0, 1000, 1000, 3000, 1000, 0, 1000, 1000, 2000, 1000, 1000, 1000, 2000, 2000, 1000, 2000, 1000, 0, 2000, 0, 1000, 2000, 2000, 1000, 1000, 1000, 1000, 3000, 1000, 0, 1000, 2000, 0, 1000, 0, 2000, 1000, 1000, 2000, 2000, 1000, 1000, 1000, 0, 1000, 1000, 0, 0, 4000, 0, 0, 1000, 1000, 3000, 0, 1000, 1000, 3000, 2000, 0, 1000, 1000, 1000, 0, 0, 0, 1000, 1000, 0, 0, 1000, 1000, 1000, 0, 0, 1000, 0, 1000, 2000, 1000, 0, 1000, 0, 0]
+	Throughput Signals: [1000, 0, 0, 0, 0, 1000, 1000, 2000, 0, 2000, 0, 1000, 3000, 2000, 3000, 0, 2000, 1000, 0, 1000, 2000, 1000, 2000, 2000, 1000, 0, 0, 0, 1000, 0, 3000, 1000, 1000, 0, 1000, 0, 1000, 0, 1000, 0, 1000, 0, 2000, 0, 1000, 2000, 0, 1000, 1000, 2000, 2000, 1000, 1000, 1000, 1000, 3000, 0, 1000, 1000, 1000, 1000, 2000, 2000, 2000, 0, 0, 1000, 3000, 1000, 0, 0, 2000, 1000, 1000, 1000, 3000, 1000, 1000, 1000, 2000, 1000, 1000, 1000, 0, 0, 1000, 1000, 0, 2000, 0, 0, 2000, 0, 1000, 3000, 1000, 2000, 0, 2000, 1000]
 Peer 2
 	Links: [[Peer 2]-[Server] (200ms)]
-	Throughput Signals: [1000, 1000, 1000, 0, 1000, 0, 1000, 3000, 3000, 0, 0, 1000, 1000, 0, 1000, 1000, 1000, 0, 0, 1000, 1000, 0, 1000, 2000, 1000, 0, 1000, 1000, 0, 1000, 1000, 1000, 1000, 1000, 3000, 0, 1000, 0, 2000, 0, 1000, 1000, 1000, 1000, 0, 1000, 0, 1000, 0, 2000, 0, 0, 1000, 2000, 1000, 1000, 2000, 0, 1000, 0, 2000, 1000, 2000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 0, 1000, 0, 3000, 1000, 2000, 1000, 0, 2000, 1000, 2000, 1000, 0, 0, 1000, 2000, 1000, 1000, 1000, 1000, 1000]
+	Throughput Signals: [1000, 1000, 1000, 0, 0, 1000, 1000, 2000, 1000, 1000, 3000, 1000, 1000, 0, 0, 0, 0, 1000, 2000, 2000, 0, 1000, 1000, 3000, 0, 2000, 1000, 2000, 1000, 0, 0, 1000, 1000, 1000, 0, 0, 1000, 1000, 0, 2000, 1000, 0, 1000, 1000, 1000, 1000, 1000, 1000, 0, 1000, 3000, 1000, 1000, 1000, 0, 0, 2000, 1000, 0, 0, 1000, 0, 0, 2000, 0, 1000, 1000, 1000, 1000, 2000, 2000, 0, 1000, 0, 1000, 0, 0, 2000, 0, 2000, 1000, 0, 0, 2000, 0, 0, 0, 1000, 1000, 0, 1000, 0, 2000, 2000, 1000, 2000, 2000, 1000, 2000, 0]
 
 --Links--
 [Peer 0]-[Server] (200ms)
-	[0, 0, 1000, 1000, 1000, 1000, 0, 0, 1000, 1000, 3000, 1000, 1000, 1000, 3000, 2000, 1000, 2000, 0, 1000, 0, 1000, 1000, 3000, 1000, 1000, 1000, 0, 1000, 0, 0, 2000, 0, 1000, 2000, 2000, 0, 0, 1000, 2000, 1000, 1000, 0, 2000, 1000, 2000, 4000, 0, 2000, 2000, 0, 2000, 2000, 1000, 1000, 1000, 1000, 1000, 1000, 0, 0, 0, 0, 0, 0, 0, 2000, 3000, 0, 0, 1000, 0, 1000, 2000, 0, 2000, 0, 1000, 2000, 2000, 1000, 1000, 1000, 1000, 1000, 0, 2000, 2000, 1000, 0, 2000, 0, 1000, 1000, 0, 0, 4000, 2000, 0, 1000]
+	[0, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 0, 1000, 1000, 0, 1000, 1000, 3000, 0, 1000, 0, 1000, 1000, 0, 1000, 1000, 1000, 2000, 1000, 1000, 1000, 1000, 2000, 2000, 0, 1000, 0, 0, 0, 0, 1000, 1000, 1000, 1000, 0, 1000, 1000, 2000, 0, 1000, 0, 3000, 1000, 0, 1000, 1000, 3000, 1000, 1000, 0, 2000, 2000, 2000, 1000, 0, 1000, 1000, 3000, 3000, 0, 1000, 0, 1000, 1000, 1000, 2000, 1000, 0, 0, 1000, 0, 1000, 1000, 2000, 1000, 1000, 0, 2000, 3000, 2000, 0, 2000, 2000, 2000, 1000, 0, 0, 2000, 2000, 0, 1000, 2000]
 [Peer 1]-[Server] (200ms)
-	[0, 0, 0, 1000, 3000, 1000, 0, 1000, 1000, 0, 2000, 0, 2000, 1000, 3000, 1000, 0, 1000, 2000, 0, 2000, 2000, 1000, 1000, 0, 1000, 2000, 1000, 3000, 1000, 0, 1000, 2000, 1000, 0, 2000, 2000, 2000, 1000, 1000, 0, 1000, 3000, 2000, 1000, 1000, 1000, 1000, 1000, 0, 2000, 0, 1000, 2000, 1000, 2000, 1000, 2000, 0, 0, 1000, 1000, 0, 2000, 0, 2000, 0, 1000, 4000, 0, 0, 1000, 2000, 2000, 1000, 1000, 0, 1000, 1000, 1000, 0, 1000, 0, 0, 1000, 1000, 0, 0, 1000, 1000, 1000, 0, 0, 2000, 2000, 0, 1000, 0, 0, 1000]
+	[0, 1000, 0, 0, 1000, 0, 2000, 1000, 1000, 0, 1000, 2000, 1000, 3000, 2000, 2000, 1000, 1000, 1000, 0, 1000, 1000, 2000, 2000, 1000, 1000, 0, 0, 1000, 2000, 3000, 1000, 0, 0, 0, 0, 0, 0, 1000, 1000, 0, 2000, 0, 1000, 1000, 1000, 3000, 0, 0, 1000, 1000, 3000, 2000, 1000, 2000, 0, 1000, 0, 1000, 1000, 2000, 2000, 1000, 1000, 2000, 0, 1000, 2000, 2000, 1000, 0, 1000, 2000, 0, 3000, 0, 1000, 3000, 1000, 1000, 0, 1000, 1000, 1000, 0, 0, 1000, 1000, 0, 3000, 1000, 1000, 0, 2000, 0, 2000, 1000, 2000, 0, 2000]
 [Peer 2]-[Server] (200ms)
-	[0, 1000, 1000, 1000, 1000, 1000, 3000, 0, 1000, 2000, 0, 0, 1000, 1000, 0, 1000, 1000, 1000, 1000, 0, 1000, 1000, 1000, 0, 1000, 1000, 0, 1000, 2000, 0, 1000, 1000, 1000, 2000, 1000, 2000, 0, 1000, 0, 2000, 0, 0, 1000, 1000, 1000, 0, 1000, 0, 2000, 0, 1000, 1000, 1000, 0, 3000, 2000, 0, 1000, 0, 1000, 0, 2000, 1000, 1000, 1000, 2000, 1000, 0, 1000, 1000, 1000, 1000, 1000, 1000, 2000, 1000, 1000, 1000, 0, 1000, 0, 3000, 1000, 1000, 2000, 1000, 3000, 0, 1000, 1000, 0, 2000, 0, 0, 1000, 2000, 1000, 0, 1000, 1000]
+	[0, 1000, 1000, 1000, 1000, 0, 1000, 2000, 1000, 1000, 1000, 2000, 1000, 1000, 0, 1000, 0, 0, 1000, 2000, 1000, 0, 3000, 2000, 1000, 1000, 1000, 2000, 1000, 0, 0, 0, 2000, 1000, 0, 0, 0, 1000, 1000, 0, 2000, 1000, 0, 1000, 2000, 1000, 0, 1000, 1000, 1000, 1000, 2000, 1000, 1000, 1000, 1000, 0, 1000, 1000, 0, 0, 1000, 1000, 0, 1000, 0, 2000, 1000, 2000, 1000, 0, 2000, 0, 1000, 0, 1000, 1000, 0, 2000, 0, 1000, 1000, 1000, 0, 1000, 0, 0, 0, 1000, 1000, 1000, 2000, 1000, 1000, 2000, 1000, 1000, 3000, 1000, 0]
 
 --Groups--
 
 --Tasks--
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-health 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-health 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
+#0: position 1000bytes time: 300ms 
 	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 300ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-health 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-health 1000bytes time: 300ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-health 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 300ms 
+#2: position 1000bytes time: 300ms 
 	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
+#3: position 1000bytes time: 300ms 
 	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-health 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-health 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-health 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 300ms 
+#5: health 1000bytes time: 300ms 
 	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 300ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-health 1000bytes time: 500ms 
+#1: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#4: position 1000bytes time: 500ms 
 	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-health 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
+#7: position 1000bytes time: 500ms 
 	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-health 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 300ms 
+#6: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#11: health 1000bytes time: 300ms 
 	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-health 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 300ms 
+#13: position 1000bytes time: 300ms 
 	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
+#9: health 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#8: position 1000bytes time: 500ms 
 	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 300ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-health 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 300ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 300ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-health 1000bytes time: 500ms 
+#10: health 1000bytes time: 500ms 
 	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 300ms 
+#16: position 1000bytes time: 300ms 
 	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 300ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-health 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
+#12: position 1000bytes time: 500ms 
 	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 300ms 
+#15: health 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#20: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#14: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#22: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#18: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#19: health 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#23: position 1000bytes time: 300ms 
 	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-health 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 300ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 300ms 
+#27: health 1000bytes time: 300ms 
 	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
+#17: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#25: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#28: position 1000bytes time: 300ms 
 	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
+#24: position 1000bytes time: 500ms 
 	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 300ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-health 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
+#21: position 1000bytes time: 500ms 
 	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 300ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-health 1000bytes time: 500ms 
+#30: position 1000bytes time: 500ms 
 	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-health 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-health 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 300ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
+#29: position 1000bytes time: 500ms 
 	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-health 1000bytes time: 300ms 
+#32: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#26: money 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#34: health 1000bytes time: 300ms 
 	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-health 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 300ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 300ms 
-	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
-position 1000bytes time: 300ms 
+#36: position 1000bytes time: 300ms 
 	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 500ms 
-	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
+#31: position 1000bytes time: 500ms 
 	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
+#35: position 1000bytes time: 500ms 
 	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
-position 1000bytes time: 500ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
-position 1000bytes time: 500ms 
+#38: position 1000bytes time: 500ms 
 	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
-health 1000bytes time: 300ms 
-	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
-position 1000bytes time: 300ms 
+#41: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#33: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#39: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#42: health 1000bytes time: 300ms 
 	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
-position 1000bytes time: 300ms 
+#45: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#37: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#44: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#48: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#40: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#50: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#43: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#47: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#54: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#46: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#52: health 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#51: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#57: health 1000bytes time: 300ms 
 	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#49: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#56: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#59: health 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#55: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#60: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#53: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#61: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#63: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#58: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#62: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#65: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#64: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#69: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#66: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#71: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#67: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#74: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#68: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#73: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#70: health 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#72: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#76: health 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#79: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#81: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#75: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#78: health 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#80: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#77: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#85: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#82: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#84: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#88: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#83: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#87: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#92: health 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#95: money 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#90: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#91: health 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#94: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#86: health 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#96: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#100: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#89: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#97: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#99: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#93: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#101: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#98: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#102: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#103: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#104: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#106: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#105: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#108: health 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#112: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#107: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#110: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#109: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#111: health 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#114: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#113: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#116: health 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#118: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#117: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#122: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#115: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#120: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#123: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#125: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#121: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#127: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#119: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#129: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#126: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#131: health 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#133: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#124: health 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#134: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#136: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#128: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#132: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#130: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#135: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#138: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#141: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#137: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#140: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#143: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#139: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#144: position 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#147: health 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#146: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#149: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#142: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#148: health 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#152: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#145: health 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#151: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#155: health 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#150: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#154: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#157: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#159: position 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#153: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#158: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#165: health 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#156: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#161: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#163: health 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 0]-[Server] (200ms) - Peer 0 - 
+#166: health 1000bytes time: 300ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - 
+#160: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#164: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#162: health 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#168: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#169: position 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#167: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#171: health 1000bytes time: 500ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - [Peer 1]-[Server] (200ms) - Peer 1 - 
+#176: health 1000bytes time: 300ms 
+	Peer 2 - [Peer 2]-[Server] (200ms) - Server - 
+#170: position 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#178: position 1000bytes time: 300ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - 
+#173: health 1000bytes time: 500ms 
+	Peer 0 - [Peer 0]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 
+#175: position 1000bytes time: 500ms 
+	Peer 1 - [Peer 1]-[Server] (200ms) - Server - [Peer 2]-[Server] (200ms) - Peer 2 - 

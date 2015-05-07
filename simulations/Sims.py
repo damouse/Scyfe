@@ -1,5 +1,10 @@
 '''
-Simulations. Because protoyping is for squares. 
+Simulations. Because protoyping is for squares.
+
+TODO:
+    -Peers should gen their own tasks
+    -Peers have to receive tasks
+    -Task type has to be set when creating tasks 
 '''
 
 from utils import Utils
@@ -8,7 +13,12 @@ import os
 
 name = "Simulations"
 
-hfreq, mfrq, pfreq = 0, 0, 0
+TASK_INPUT = 0 #input to a group triggering a variable change
+TASK_UPDATE = 1 #propogation update, that is
+TASK_VALIDATION = 2 #not needed?
+TASK_HASH = 3 #inter-group hashing
+
+taskId = 0
 
 class Peer:
     def __init__(self, label):
@@ -18,6 +28,17 @@ class Peer:
         #each element is throughput in that 50ms tick
         self.throughput = []
         self.next = []
+
+        # receiving and task generation
+        self.outgoing = []
+
+    #receive an incoming task and decide what to do with it
+    def receiveTask(self, task):
+        pass
+
+    #generate outgoing tasks based on var rolls
+    def generateTasks(self):
+        pass
 
     def __eq__(self, other):
         if not isinstance(other, Peer): return False
@@ -61,8 +82,13 @@ class Link:
 
 #represents an operation that runs a duration
 class Task:
-    def __init__(self, var, source, target):
-        self.varname = var.name
+    def __init__(self, var, source, target, taskType):
+        self.id = taskId
+        taskId += 1
+
+        self.variable = var
+        self.type = taskType
+
         self.source = source
         self.target = target
         self.size = 1000 #bytes
@@ -73,51 +99,29 @@ class Task:
         self.route = None
         self.position = source
 
-        self.route = self.find_shortest_path(self.source, self.target)
-        #self.route = self.routing()
+        self.route = self.routing(self.source)
+        self.routeHistory = list(self.route)
 
     def __repr__(self):
-        ret = self.varname + " " + str(self.size) + "bytes time: " + str(self.time) + "ms \n\t"
+        ret = self.variable.name + " " + str(self.size) + "bytes time: " + str(self.time) + "ms \n\t"
         route = ""
 
-        for item in route: route += str(item) + " - "
+        for item in self.routeHistory: route += str(item) + " - "
         ret += route
         return ret 
 
-    # find a route by BFSing the links and nodes, return the path
-    # assumes a path exists!
-    def routing(self):
-        visited, queue = [], [self.source]
-
-        while queue:
-            vertex = queue.pop(0)
-
-            if vertex not in visited:
-                visited.append(vertex)
-
-                #get the children
-                children = []
-                for link in vertex.links:
-                    nextPeer = link.end if link.start == current else link.end
-                    if nextPeer not in visited: children.append(nextPeer)
-
-                #add the child nodes (removing any visited ones)
-                queue.extend(children)
-
-        return visited
-
-    def find_shortest_path(self, start, end, oldPath=[]):
+    def routing(self, start, oldPath=[]):
         #required to avoid references to the list
         path = list(oldPath)
         path.extend([start])
-        if start == end:
+        if start == self.target:
             return path
 
         shortest = None
 
         for child in start.next:
             if child not in path:
-                newpath = self.find_shortest_path(child, end, path)
+                newpath = self.routing(child, path)
 
                 if newpath:
                     if not shortest or len(newpath) < len(shortest):
@@ -131,10 +135,11 @@ class Task:
         self.currentTimeDown -= advance
         self.time += advance
 
-        if self.currentTimeDown == 0:
+        if self.currentTimeDown <= 0:
             self.position = self.route[0]
             self.route.pop(0)
 
+            print 'Parent: ' + str(self.position)
             self.position.throughput[-1] += self.size
 
         return False
@@ -163,12 +168,12 @@ def run(peers, links, groups, duration):
 
     while time < duration:
         time += step
-        [x.throughput.append(0) for x in links]
+
+        for link in links: link.throughput.append(0)
+        for peer in peers: peer.throughput.append(0)
 
         #generate new tasks
         for peer in peers:
-            peer.throughput.append(0)
-
             for var in peer.variables:
                 task = roll(peer, peers, var)
 
@@ -183,7 +188,7 @@ def run(peers, links, groups, duration):
                 liveTasks.remove(task)
                 deadTasks.append(task)
 
-    return liveTasks
+    return deadTasks
 
 def roll(peer, peers, variable):
     roll = random.randrange(0, 1000, 1)
@@ -249,6 +254,7 @@ def traditional(duration):
     Utils.log(name, "Starting Client-Server Tests...")
     peers, links, groups, tasks = [], [], [], []
     server = Peer("Server")
+    peers.append(server)
 
     for i in range(0, 3): 
         peer = Peer("Peer " + str(i))
@@ -274,7 +280,9 @@ def test():
         peers.append(peer)
 
     var = Variable("TestRoute", 1)
-    t = Task(var, peers[0], peers[-1])
+    task = Task(var, peers[0], peers[-1])
+
+    peers.append(server)
 
     print "Moving from " + peers[0].name + " to " + peers[-1].name
 
@@ -287,8 +295,32 @@ def test():
         print '\t' + peer.write()
 
     print '\nRoute'
-    print '\t' + str(t.route)
+    print '\t' + str(task.route)
     
+    duration = 1000
+    step = 100 # ms step
+    time = 0
+
+    liveTasks, deadTasks = [task], []
+
+    while time < duration:
+        time += step
+        [x.throughput.append(0) for x in links]
+
+        #generate new tasks
+        for peer in peers:
+            peer.throughput.append(0)
+
+        #tick existing tasks
+        for task in liveTasks:
+
+            # the tasks is completed
+            if task.advance(step): 
+                print 'Task Completed'
+                liveTasks.remove(task)
+                deadTasks.append(task)
+
+    log(peers, links, groups, tasks, duration)
 
 
 

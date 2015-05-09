@@ -12,6 +12,7 @@ pretending to be an application implementation.)
 '''
 import sys
 from multiprocessing import Process
+from simulations import Writer
 import os
 
 from tests import *
@@ -59,10 +60,13 @@ def runSimulation():
     for p in processes: p.terminate()
 
 def runActualSimulations():
+    #removes all the files in the output directory
+    Writer.clearDir()
+
     duration = 10000 #ms
+
     Sims.traditional(duration)
     
-    #Sims.test()
 
 #development tests
 def runLocalTests():

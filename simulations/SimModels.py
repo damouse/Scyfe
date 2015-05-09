@@ -1,9 +1,20 @@
+'''
+Model objects used and passed around by the main loop
+'''
+
+
+
 startingTaskId = 0
+
+class Variable:
+    def __init__(self, name, freq):
+        self.name = name
+        self.freq = freq #hertz
 
 class Peer:
     def __init__(self, label):
         self.name = label
-        self.variables = []
+        self.variables = buildVariables()
 
         #each element is throughput in that 50ms tick
         self.throughput = []
@@ -29,6 +40,13 @@ class Peer:
 
     def write(self):
         return self.name + "\n\tLinks: " + str(self.next) + "\n\tThroughput Signals: " + str(self.throughput) 
+
+def buildVariables():
+    health = Variable("health", 1)
+    position = Variable("position", 5)
+    money = Variable("money", .1)
+
+    return [health, position, money]
 
 class Group:
     def __init__(self, label):
@@ -80,9 +98,6 @@ class Task:
         self.route = None
         self.position = source
 
-        self.route = self.routing(self.source)
-        self.routeHistory = list(self.route)
-
     def __repr__(self):
         ret = "#" + str(self.taskId) + ": " + self.variable.name + " " + str(self.size) + "bytes time: " + str(self.time) + "ms \n\t"
         route = ""
@@ -91,40 +106,6 @@ class Task:
         ret += route
         return ret 
 
-    def routing(self, start, oldPath=[]):
-        #required to avoid references to the list
-        path = list(oldPath)
-        path.extend([start])
-        if start == self.target:
-            return path
-
-        shortest = None
-
-        for child in start.next:
-            if child not in path:
-                newpath = self.routing(child, path)
-
-                if newpath:
-                    if not shortest or len(newpath) < len(shortest):
-                        shortest = newpath
-        return shortest
-
-    #move forward by the given amount of time. Return true if the task is finished
-    def advance(self, advance):
-        if self.position == self.target: return True
-
-        self.currentTimeDown -= advance
-        self.time += advance
-
-        if self.currentTimeDown <= 0:
-            self.position = self.route[0]
-            self.route.pop(0)
-
-            self.position.throughput[-1] += self.size
-
-        return False
-
-class Variable:
-    def __init__(self, name, freq):
-        self.name = name
-        self.freq = freq #hertz
+    def setRoute(self, route):
+        self.route = route
+        self.routeHistory = list(route)

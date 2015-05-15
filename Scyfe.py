@@ -18,6 +18,7 @@ import os
 from tests import *
 from utils import Utils
 from simulations import Sims
+from simulations import Graphs
 
 from time import sleep
 import time
@@ -63,9 +64,15 @@ def runActualSimulations():
     #removes all the files in the output directory
     Writer.clearDir()
 
-    duration = 10000 #ms
+    duration = 2000 #ms
 
-    Sims.traditional(duration)
+    traditionalTen = Sims.traditional(duration, 3)
+    traditionalHundred = Sims.traditional(duration, 6)
+    traditionalThousand = Sims.traditional(duration, 20)
+
+    Graphs.plotTraditionalAverage([traditionalTen, traditionalHundred])
+
+    #Sims.basicScyfe(duration, 3, 10, 100)
     
 
 #development tests

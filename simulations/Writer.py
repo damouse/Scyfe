@@ -10,7 +10,9 @@ outputDir = os.getcwd() + "/results/"
 def log(peers, links, groups, tasks, duration):
     writeSummary("traditional-summary", peers, links, groups, tasks, duration)
 
-
+# Average task latency
+# Average Peer throughput
+# 
 
 ''' Printing calls- reusable by multiple tests '''
 def writeSummary(name, peers, links, groups, tasks, duration):
@@ -24,7 +26,7 @@ def writeSummary(name, peers, links, groups, tasks, duration):
     for link in links: outFile.write(link.write() + '\n')
 
     outFile.write("\n--Groups--\n")
-    for group in groups: outFile.write(group + '\n')
+    for group in groups: outFile.write(str(group) + '\n')
 
     outFile.write("\n--Tasks--\n")
     for task in tasks: outFile.write(str(task) + '\n')
@@ -51,3 +53,16 @@ def makeFile(name):
         os.makedirs(os.path.dirname(pathname))
 
     return open(pathname, "w") 
+
+class Stats:
+    def __init__(self, peers, links, groups, tasks):
+        self.tasks = tasks
+        self.peers = peers
+        self.links = links
+        self.groups = groups
+
+        self.duration = 0
+        self.connectivity = 1
+        self.multicast = 0
+
+        self.average = []

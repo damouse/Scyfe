@@ -17,17 +17,19 @@ TODO:
 
 from utils import Utils
 
-# from simulations import Graphs
+from simulations import Graphs
 from simulations import SimModels as Model
 from simulations import Writer
+from simulations import timer
 import random
 import os
+import pprint
 
-TASK_INPUT = 0 #input to a group triggering a variable change
-TASK_UPDATE = 1 #propogation update, that is
-TASK_VALIDATION = 2 #not needed?
-TASK_HASH = 3 #inter-group hashing
+TRADITIONAL = False
+VERBOSE_TIMER = True
 
+#memoization of routes between all peers in the graph
+routeMemoization = {}
 
 ''' Main Funcitons '''
 # The main run loop for the simulation. "Ticks" in constant millisecond increments
@@ -40,10 +42,14 @@ def run(peers, links, groups, duration):
     step = 100 # ms step
     time = 0
 
+    global routeMemoization
+    routeMemoization = {}
+
     liveTasks, deadTasks = [], []
 
     while time < duration:
         time += step
+        print "Starting tick: " + str(time)
 
         # the throughput per tick is measured in an array. Each tick, append a 
         # 0 to the array to signify the start of this periods throughput. All tasks 
@@ -53,19 +59,27 @@ def run(peers, links, groups, duration):
         for peer in peers: peer.throughput.append(0)
 
         #generate new tasks
-        for peer in peers:
-            for var in peer.variables:
-                task = generateVariable(peer, peers, var)
+        with timer.Timer(key = "Generate"):
+            for peer in peers:
+                for var in peer.variables:
+                    for task in generateVariable(peer, peers, var):
+                        route = buildRoute(task, task.source)
+                        task.setRoute(route)
+                        liveTasks.append(task)
+                        # pprint.pprint(routeMemoization)
 
-                if task != None:
-                    task.setRoute(buildRoute(task, task.source))
-                    liveTasks.append(task)
 
         #tick existing tasks
-        for task in liveTasks:
-            if advanceTask(task, step): 
-                liveTasks.remove(task)
-                deadTasks.append(task)
+        with timer.Timer(key = "Advance"):
+            for task in liveTasks:
+                if advanceTask(task, step): 
+                    liveTasks.remove(task)
+                    deadTasks.append(task)
+
+                    #deliver the task to the target. They will return any new tasks.
+                    newTasks = task.target.receiveTask(task)
+                    for task in newTasks: task.setRoute(buildRoute(task, task.source))
+                    liveTasks.extend(newTasks)
 
     #return the list of tasks that completed their journey
     return deadTasks
@@ -79,14 +93,18 @@ def run(peers, links, groups, duration):
 # takes over from there
 def generateVariable(peer, peers, variable):
     roll = random.randrange(0, 1000, 1)
-
-    target = peer
-    while target == peer: target = random.choice(peers)
+    ret = []
 
     if roll < variable.freq * 100:
-        return Model.Task(variable, peer, target, TASK_UPDATE)
+        #if we are running traditional server tests then the server is the only recipient of any update
+        if TRADITIONAL:
+            return [Model.Task(variable, peer, [x for x in peers if x.server][0], Model.TASK_HASH)]
 
-    return None
+        for neighbor in peer.group.peers:
+            if neighbor == peer: continue
+            ret.append(Model.Task(variable, peer, neighbor, Model.TASK_HASH))
+
+    return ret
 
 # Move forward by the given amount of time. Return true if the task is finished
 #
@@ -111,6 +129,7 @@ def advanceTask(task, advance):
 #
 # Given a task and the current node, recall the function recursively on the node's 
 # children until the target node is reached. Return the shortest path. 
+earlyStop = False
 def buildRoute(task, start, oldPath=[]):
     # Copy the path and add this peer to the list
     path = list(oldPath)
@@ -120,6 +139,12 @@ def buildRoute(task, start, oldPath=[]):
     if start == task.target:
         return path
 
+    if start.name in routeMemoization:
+        if task.target.name in routeMemoization[start.name]:
+            return list(routeMemoization[start.name][task.target.name])
+    else:
+        routeMemoization[start.name] = {}
+
     shortest = None
 
     # Recursively call this method on children of current node, checking 
@@ -127,12 +152,17 @@ def buildRoute(task, start, oldPath=[]):
     # target node could not be found. 
     for child in start.next:
         if child not in path:
+            shortest = buildRoute(task, child, path)
+
+            if shortest: break
+            
             newpath = buildRoute(task, child, path)
 
-            if newpath:
+            if newpath: 
                 if not shortest or len(newpath) < len(shortest):
                     shortest = newpath
 
+    if shortest: routeMemoization[start.name][task.target.name] = list(shortest)
     return shortest
 
 
@@ -142,22 +172,76 @@ def buildRoute(task, start, oldPath=[]):
 # reply to each client individually. 
 def traditional(duration, numClients = 3):
     print "Starting Client-Server Tests..."
+
+    #switch on the global
+    global TRADITIONAL
+    TRADITIONAL = True
+
     peers, links, groups, tasks = [], [], [], []
 
     server = Model.Peer("Server")
+    server.server = True
     peers.append(server)
+
+    group = Model.Group("Group 1")
+    group.addPeer(server)
+    groups.append(group)
 
     for i in range(0, numClients): 
         peer = Model.Peer("Peer " + str(i))
         links.append(Model.Link(200, peer, server))
         peers.append(peer)
+        group.addPeer(peer)
+
+    server.areaOfInterest = peers
 
     tasks = run(peers, links, groups, duration)
     Writer.log(peers, links, groups, tasks, duration)
-    # Graphs.graph(peers, links, groups, tasks, duration)
+
+    TRADITIONAL = False
+    print "done"
+
+    stats = Writer.Stats(peers, links, groups, tasks)
+    stats.duration = duration
+    stats.connectivity = 0
+    stats.multicast = 0
+
+    return stats
+
+
+def basicScyfe(duration, groupSize, conectivityFactor, numClients = 10):
+    print "Starting Scyfe Tests..."
+
+    peers, links, groups, tasks = [], [], [], []
+    numGroups = numClients / groupSize;
+
+    for i in range(0, numGroups):
+        group = Model.Group("Group " + str(i))
+        groups.append(group)
+
+        for j in range(0, groupSize):
+            peer = Model.Peer("Peer " + str(i) + str(j))
+            peers.append(peer)
+            group.addPeer(peer)
+
+        links += group.link()
+
+    for i in range(0, len(groups)):
+        for j in range(1, conectivityFactor + 1):
+            links.append(groups[i].linkGroup(groups[j % len(groups)]))
+
+
+    tasks = run(peers, links, groups, duration)
+    Writer.log(peers, links, groups, tasks, duration)
 
     print "done"
 
+    stats = Writer.Stats(peers, links, groups, tasks)
+    stats.duration = duration
+    stats.connectivity = 0
+    stats.multicast = 0
+
+    return stats
 
 ''' Random Testing '''
 def test():

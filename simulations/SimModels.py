@@ -2,7 +2,10 @@
 Model objects used and passed around by the main loop
 '''
 
-
+TASK_INPUT = 0 #input to a group triggering a variable change
+TASK_UPDATE = 1 #propogation update, that is
+TASK_GROUP_PROP = 2
+TASK_HASH = 3 #inter-group hashing
 
 startingTaskId = 0
 
@@ -15,21 +18,31 @@ class Peer:
     def __init__(self, label):
         self.name = label
         self.variables = buildVariables()
+        self.server = False
 
         #each element is throughput in that 50ms tick
         self.throughput = []
         self.next = []
 
-        # receiving and task generation
-        self.outgoing = []
+        self.group = None
+        self.areaOfInterest = []
 
     #receive an incoming task and decide what to do with it
     def receiveTask(self, task):
-        pass
+        if task.type == TASK_HASH:
+            ret = []
+            for peer in self.areaOfInterest:
+                ret.append(Task(task.variable, self, peer, TASK_UPDATE))
+            #wait until all the hashes come in first and then broadcast the new updates to subs
+            return ret
 
-    #generate outgoing tasks based on var rolls
-    def generateTasks(self):
-        pass
+        if task.type == TASK_UPDATE:
+            ret = []
+            for peer in self.group.peers:
+                ret.append(Task(task.variable, self, peer, TASK_GROUP_PROP))
+            return ret
+        
+        return []
 
     def __eq__(self, other):
         if not isinstance(other, Peer): return False
@@ -41,6 +54,7 @@ class Peer:
     def write(self):
         return self.name + "\n\tLinks: " + str(self.next) + "\n\tThroughput Signals: " + str(self.throughput) 
 
+
 def buildVariables():
     health = Variable("health", 1)
     position = Variable("position", 5)
@@ -48,13 +62,43 @@ def buildVariables():
 
     return [health, position, money]
 
+
 class Group:
     def __init__(self, label):
         self.peers = []
         self.name = label
 
+    def addPeer(self, peer):
+        self.peers.append(peer)
+        peer.group = self
+
     def __repr__(self):
         return self.name + " " + str(self.peers)
+
+    #makes links between all the peers in the group. Returns a set of links
+    def link(self):
+        links = []
+        for i in range(0, len(self.peers)):
+            for j in range(i + 1, len(self.peers)):
+                links.append(Link(200, self.peers[i], self.peers[j]))
+
+        return links
+
+    #link this group with another group given one peer in the group
+    def linkGroup(self, group):
+        #pick the peer with the least number of existing links to link up 
+        return Link(200, shortestNext(self.peers), shortestNext(group.peers))
+
+
+def shortestNext(peers):
+    shortest = 12345678
+    target = peers[0]
+    for peer in peers:
+        if len(peer.next) < shortest: 
+            shortest = len(peer.next)
+            target = peer
+
+    return target
 
 class Link:
     def __init__(self, latency, start, end):
@@ -99,7 +143,7 @@ class Task:
         self.position = source
 
     def __repr__(self):
-        ret = "#" + str(self.taskId) + ": " + self.variable.name + " " + str(self.size) + "bytes time: " + str(self.time) + "ms \n\t"
+        ret = "#" + str(self.taskId) + ": " + self.variable.name + " " + str(self.size) + " bytes time: " + str(self.time) + "ms \n\t"
         route = ""
 
         for item in self.routeHistory: route += str(item) + " - "

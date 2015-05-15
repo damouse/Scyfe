@@ -198,7 +198,7 @@ def traditional(duration, numClients = 3):
     server.areaOfInterest = peers
 
     tasks = run(peers, links, groups, duration)
-    # Writer.log(peers, links, groups, tasks, duration)
+    Writer.log(peers, links, groups, tasks, duration)
 
     TRADITIONAL = False
     print "done"
@@ -235,7 +235,7 @@ def basicScyfe(duration, groupSize, conectivityFactor, numClients = 10):
 
 
     tasks = run(peers, links, groups, duration)
-    # Writer.log(peers, links, groups, tasks, duration)
+    Writer.log(peers, links, groups, tasks, duration)
 
     print "done"
 

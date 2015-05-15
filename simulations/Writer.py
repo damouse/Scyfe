@@ -9,6 +9,7 @@ outputDir = os.getcwd() + "/results/"
 ''' Public Interface '''
 def log(peers, links, groups, tasks, duration):
     writeSummary("traditional-summary", peers, links, groups, tasks, duration)
+    print "Summary written to traditional-summary"
 
 # Average task latency
 # Average Peer throughput

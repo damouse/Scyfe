@@ -125,7 +125,7 @@ def plotLatency(stats):
             total = 0.0
             for x in latency[key]: total += x
             averageLat.append(total / len(latency[key]))
-            time.append(key)
+            time.append(key / 100)
 
         if test.comment != None:
             addedPlot, = plot.plot(time, averageLat, label = "CSA, N=" + str(test.num))

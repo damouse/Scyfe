@@ -64,16 +64,29 @@ def runActualSimulations():
     #removes all the files in the output directory
     Writer.clearDir()
 
-    duration = 2000 #ms
+    duration = 20000 #ms
 
     traditionalTen = Sims.traditional(duration, 3)
     traditionalHundred = Sims.traditional(duration, 6)
-    traditionalThousand = Sims.traditional(duration, 20)
+    traditionalThousand = Sims.traditional(duration, 12)
+    Graphs.plotTraditionalAverage([traditionalTen, traditionalHundred, traditionalThousand])
 
-    Graphs.plotTraditionalAverage([traditionalTen, traditionalHundred])
+    s10 = Sims.basicScyfe(duration, 3, 2, 10)
+    s100 = Sims.basicScyfe(duration, 3, 2, 20)
+    s1000 = Sims.basicScyfe(duration, 3, 2, 40)
+    Graphs.plotThrouput([s10, s100, s1000])
 
-    #Sims.basicScyfe(duration, 3, 10, 100)
-    
+    s10 = Sims.basicScyfe(duration, 3, 3, 12)
+    s100 = Sims.basicScyfe(duration, 3, 6, 12)
+    s1000 = Sims.basicScyfe(duration, 3, 12, 12)
+    Graphs.plotMulticastThroughput([s10, s100, s1000])
+
+    traditionalThousand.comment = "Traditional"
+    s10m3 = Sims.basicScyfe(duration, 3, 3, 6)
+    s20m3 = Sims.basicScyfe(duration, 3, 3, 12)
+    s10m6 = Sims.basicScyfe(duration, 3, 10, 6)
+    s20m6 = Sims.basicScyfe(duration, 3, 12, 12)
+    Graphs.plotLatency([traditionalThousand, s10m3, s20m3, s10m6, s20m6])
 
 #development tests
 def runLocalTests():

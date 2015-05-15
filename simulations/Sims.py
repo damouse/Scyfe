@@ -59,27 +59,28 @@ def run(peers, links, groups, duration):
         for peer in peers: peer.throughput.append(0)
 
         #generate new tasks
-        with timer.Timer(key = "Generate"):
-            for peer in peers:
-                for var in peer.variables:
-                    for task in generateVariable(peer, peers, var):
-                        route = buildRoute(task, task.source)
-                        task.setRoute(route)
-                        liveTasks.append(task)
-                        # pprint.pprint(routeMemoization)
+        for peer in peers:
+            for var in peer.variables:
+                for task in generateVariable(peer, peers, var):
+                    route = buildRoute(task, task.source)
+                    task.setRoute(route)
+                    task.startTime = time
+                    liveTasks.append(task)
+                    # pprint.pprint(routeMemoization)
 
 
         #tick existing tasks
-        with timer.Timer(key = "Advance"):
-            for task in liveTasks:
-                if advanceTask(task, step): 
-                    liveTasks.remove(task)
-                    deadTasks.append(task)
+        for task in liveTasks:
+            if advanceTask(task, step): 
+                liveTasks.remove(task)
+                deadTasks.append(task)
 
-                    #deliver the task to the target. They will return any new tasks.
-                    newTasks = task.target.receiveTask(task)
-                    for task in newTasks: task.setRoute(buildRoute(task, task.source))
-                    liveTasks.extend(newTasks)
+                #deliver the task to the target. They will return any new tasks.
+                newTasks = task.target.receiveTask(task)
+                for task in newTasks: 
+                    task.setRoute(buildRoute(task, task.source))
+                    task.startTime = time
+                liveTasks.extend(newTasks)
 
     #return the list of tasks that completed their journey
     return deadTasks
@@ -120,6 +121,7 @@ def advanceTask(task, advance):
     if task.currentTimeDown <= 0:
         task.position = task.route[0]
         task.route.pop(0)
+        task.currentTimeDown = task.position.latency
 
         task.position.throughput[-1] += task.size
 
@@ -196,12 +198,13 @@ def traditional(duration, numClients = 3):
     server.areaOfInterest = peers
 
     tasks = run(peers, links, groups, duration)
-    Writer.log(peers, links, groups, tasks, duration)
+    # Writer.log(peers, links, groups, tasks, duration)
 
     TRADITIONAL = False
     print "done"
 
     stats = Writer.Stats(peers, links, groups, tasks)
+    stats.num = numClients
     stats.duration = duration
     stats.connectivity = 0
     stats.multicast = 0
@@ -232,14 +235,15 @@ def basicScyfe(duration, groupSize, conectivityFactor, numClients = 10):
 
 
     tasks = run(peers, links, groups, duration)
-    Writer.log(peers, links, groups, tasks, duration)
+    # Writer.log(peers, links, groups, tasks, duration)
 
     print "done"
 
     stats = Writer.Stats(peers, links, groups, tasks)
+    stats.num = numClients
     stats.duration = duration
-    stats.connectivity = 0
-    stats.multicast = 0
+    stats.connectivity = conectivityFactor
+    stats.multicast = conectivityFactor
 
     return stats
 

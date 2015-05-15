@@ -2,6 +2,8 @@
 Model objects used and passed around by the main loop
 '''
 
+import random
+
 TASK_INPUT = 0 #input to a group triggering a variable change
 TASK_UPDATE = 1 #propogation update, that is
 TASK_GROUP_PROP = 2
@@ -26,6 +28,7 @@ class Peer:
 
         self.group = None
         self.areaOfInterest = []
+        self.latency = 0
 
     #receive an incoming task and decide what to do with it
     def receiveTask(self, task):
@@ -87,7 +90,13 @@ class Group:
     #link this group with another group given one peer in the group
     def linkGroup(self, group):
         #pick the peer with the least number of existing links to link up 
-        return Link(200, shortestNext(self.peers), shortestNext(group.peers))
+        shortestSelf = shortestNext(self.peers)
+        shortestRemote = shortestNext(group.peers)
+
+        shortestSelf.areaOfInterest.append(shortestRemote)
+        shortestRemote.areaOfInterest.append(shortestSelf)
+
+        return Link(200, shortestSelf, shortestRemote)
 
 
 def shortestNext(peers):
@@ -134,8 +143,11 @@ class Task:
 
         self.source = source
         self.target = target
-        self.size = 1000 #bytes
 
+        if self.type == TASK_HASH: self.size = 1024
+        else: self.size = random.randrange(0, 4096, 1024)
+
+        self.startTime = 0
         self.time = 0
         self.currentTimeDown = 0 #the amount of time left on 
 

@@ -37,6 +37,7 @@ def writeSummary(name, peers, links, groups, tasks, duration):
 ''' Internal Helpers'''
 def clearDir():
     for fname in os.listdir(outputDir):
+        if '.png' in fname: continue
         file_path = os.path.join(outputDir, fname)
 
         try:
@@ -66,3 +67,5 @@ class Stats:
         self.multicast = 0
 
         self.average = []
+        self.comment = None
+        self.num = len(peers)
